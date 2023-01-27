@@ -28,7 +28,7 @@ public class playerMovement : MonoBehaviour
     [SerializeField] private LayerMask _ground;
     [SerializeField] private Transform _playerBody;
     [SerializeField] private Transform _camParentBone;
-    [HideInInspector] private Rigidbody _rb;
+    private Rigidbody _rb;
 
     //debuggingBools
     [HideInInspector] public bool _crouching = false;
@@ -141,7 +141,7 @@ public class playerMovement : MonoBehaviour
 
     void Jump()
     {
-        
+
     }
 
     void ToggleCrouch()
