@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class sceneLoader : MonoBehaviour
+public class playerMovement : MonoBehaviour
 {
+
+    //need walking sprinting jumping and crouching
+
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -15,15 +18,5 @@ public class sceneLoader : MonoBehaviour
     void Update()
     {
         
-    }
-
-    public void LoadScene1()
-    {
-        SceneManager.LoadScene("Scene1");
-    }
-
-    public void LoadScene2()
-    {
-        SceneManager.LoadScene("Scene2");
     }
 }
