@@ -54,9 +54,9 @@ public class DebuggingSystem : MonoBehaviour
             {
                 GUI.Box(new Rect (Screen.width - 250,0,250,200), "Weapon Values");
                 GUI.Label(new Rect(Screen.width - 230, 20, 100, 20), "Ammunition");
-                GUI.Label(new Rect(Screen.width - 230, 40, 100, 20), "Mag Size: " + _weapon._magSize);
-                GUI.Label(new Rect(Screen.width - 230, 60, 100, 20), "Ammo In Mag: " + _weapon._ammoCapacity);
-                GUI.Label(new Rect(Screen.width - 230, 80, 100, 20), "Spare Ammo: " + _weapon._spareAmmo);
+                GUI.Label(new Rect(Screen.width - 230, 40, 250, 20), "Mag Size: " + _weapon._magSize);
+                GUI.Label(new Rect(Screen.width - 230, 60, 250, 20), "Ammo In Mag: " + _weapon._ammoCapacity);
+                GUI.Label(new Rect(Screen.width - 230, 80, 250, 20), "Spare Ammo: " + _weapon._spareAmmo);
 
                 GUI.Label(new Rect(Screen.width - 230, 100, 250, 20), "Booleans");
                 GUI.Label(new Rect(Screen.width - 230, 120, 250, 20), "Firing: " + _weapon._firing);
@@ -67,13 +67,14 @@ public class DebuggingSystem : MonoBehaviour
 
             if(_showPlayer)
             {
-                GUI.Box(new Rect (Screen.width - 500,0,250,140), "Player");
+                GUI.Box(new Rect (Screen.width - 500,0,250,160), "Player");
                 GUI.Label(new Rect(Screen.width - 480, 20, 250, 20), "XYZ: " + _player._location);
                 GUI.Label(new Rect(Screen.width - 480, 40, 250, 20), "Grounded: " + _player._grounded);
-                GUI.Label(new Rect(Screen.width - 480, 60, 250, 20), "Crouching: " + _player._crouching);
-                GUI.Label(new Rect(Screen.width - 480, 80, 250, 20), "Sprinting: " + _player._sprinting);
-                GUI.Label(new Rect(Screen.width - 480, 100, 250, 20), "xRotation: " + _player._xRotation);
-                GUI.Label(new Rect(Screen.width - 480, 120, 250, 20), "yRotation: " + _player._yRotation);
+                GUI.Label(new Rect(Screen.width - 480, 60, 250, 20), "Jumping: " + _player._jumping);
+                GUI.Label(new Rect(Screen.width - 480, 80, 250, 20), "Crouching: " + _player._crouching);
+                GUI.Label(new Rect(Screen.width - 480, 100, 250, 20), "Sprinting: " + _player._sprinting);
+                GUI.Label(new Rect(Screen.width - 480, 120, 250, 20), "xRotation: " + _player._xRotation);
+                GUI.Label(new Rect(Screen.width - 480, 140, 250, 20), "yRotation: " + _player._yRotation);
             }    
         }
     }

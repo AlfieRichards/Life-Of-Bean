@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 131.16846, g: 162.5249, b: 215.10962, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 316039251}
   - component: {fileID: 316039250}
   - component: {fileID: 316039249}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -251,6 +251,68 @@ Transform:
   m_Children:
   - {fileID: 444198439088681645}
   - {fileID: 444198438120556745}
+  m_Father: {fileID: 444198437842782997}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1806832793
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1806832794}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1806832794
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1806832793}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 444198438120556745}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1998684641
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1998684642}
+  m_Layer: 0
+  m_Name: GroundCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1998684642
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1998684641}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
   m_Father: {fileID: 444198437842782997}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -613,11 +675,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 444198437842782993}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 255.08434, y: 39.94, z: 151.49704}
+  m_LocalPosition: {x: 255.08434, y: 40.988, z: 151.49704}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 667569327}
+  - {fileID: 1998684642}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -636,15 +699,16 @@ MonoBehaviour:
   _speed: 5
   _sprintSpeed: 10
   _crouchSpeed: 2.5
-  _jumpHeight: 0
-  _jumpPower: 0
+  _jumpPower: 4
+  _groundCheckDistance: 0.01
   mouseSensitivity: 100
-  _groundPoint: {fileID: 0}
+  _groundPoint: {fileID: 1998684642}
   _ground:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   _playerBody: {fileID: 444198437842782997}
   _camParentBone: {fileID: 667569327}
+  _jumping: 0
   _crouching: 0
   _sprinting: 0
   _grounded: 0
@@ -700,7 +764,8 @@ Transform:
   m_LocalPosition: {x: 0.3999939, y: 0, z: 1.0399933}
   m_LocalScale: {x: 0.2984, y: 0.27292, z: 2.7031}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1806832794}
   m_Father: {fileID: 667569327}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -716,15 +781,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75cbdbc0b85d0164d9744d00f55cdfa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _firePoint: {fileID: 0}
-  _magSize: 0
-  _ammoCapacity: 0
-  _spareAmmo: 0
-  _fireRate: 0
-  _fireMode: 0
-  _range: 0
-  _damage: 0
-  _reloadTime: 0
+  _firePoint: {fileID: 1806832794}
+  _magSize: 30
+  _ammoCapacity: 100
+  _spareAmmo: 100
+  _fireRate: 800
+  _fireMode: 1
+  _range: 500
+  _damage: 30
+  _reloadTime: 2
   _damageable:
     serializedVersion: 2
     m_Bits: 0

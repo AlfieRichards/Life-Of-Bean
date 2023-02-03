@@ -63,6 +63,7 @@ public class weaponScript : MonoBehaviour
             if(_fireMode == 1)
             {
                 //starts firing
+                FireWeapon();
                 _firing = true;
             }
 
@@ -72,6 +73,7 @@ public class weaponScript : MonoBehaviour
                 if(!_firing)
                 {
                     //starts firing
+                    FireWeapon();
                     _firing = true;
                 }
             }
@@ -111,6 +113,7 @@ public class weaponScript : MonoBehaviour
             {
                 //reloads the weapon after the reload time
                 _reloading = true;
+                _canReload = true;
                 //anim would play here
                 Invoke("Reload", _reloadTime);
             }
@@ -119,6 +122,7 @@ public class weaponScript : MonoBehaviour
                 //if you have no ammo
                 Debug.Log("No ammo");
                 _reloading = false;
+                _canReload = false;
                 //play a sound or anim here for no ammo
             }
         }
@@ -142,6 +146,7 @@ public class weaponScript : MonoBehaviour
             {
                 _ammoCapacity += _spareAmmo; //adds remaining spare ammo into mag
                 _spareAmmo = 0; //sets spare to empty
+                _canReload = false; //sets the begun can reload bool to false
                 Debug.Log("emptied spare ammo");
             }
 
@@ -161,6 +166,39 @@ public class weaponScript : MonoBehaviour
             _reloading = false;
             //do some kinda out of ammo anim or sound here. Will also be played if you dont need to reload
         }
+    }
+
+    void FireWeapon()
+    {
+        //if mag empty or shot delay ongoing dont shoot
+        if(_ammoCapacity < 1 || !_canFire || _reloading)
+        {
+            return;
+        }
+
+        //adds correct delay inbetween shots
+        _canFire = false;
+        Invoke("ShotDelay", _shotDelay);
+
+        //fires primary raycast
+        RaycastHit hit;
+        if (Physics.Raycast(_firePoint.position, transform.TransformDirection(Vector3.forward), out hit, _range, _damageable))
+        {
+
+            //deals damage to hit object
+            //hit.takeDamage(damage);
+
+
+            //Debug code
+            Debug.Log("Did Hit");
+        }
+
+        //subtracts from ammo
+        _ammoCapacity -= 1;
+
+
+        //debug code to show the weapon has been fired
+        Debug.Log("Firing");
     }
 
     //used to delay the shots according to fire rate

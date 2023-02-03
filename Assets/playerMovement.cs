@@ -15,8 +15,8 @@ public class playerMovement : MonoBehaviour
 
     //jumpOptions
     [Header("Jumping Options")]
-    [SerializeField] private float _jumpHeight;
     [SerializeField] private float _jumpPower;
+    [SerializeField] private float _groundCheckDistance;
 
     //mouseOptions
     [Header("Mouse Options")]
@@ -31,9 +31,10 @@ public class playerMovement : MonoBehaviour
     private Rigidbody _rb;
 
     //debuggingBools
+    [HideInInspector] public bool _jumping = false;
     [HideInInspector] public bool _crouching = false;
     [HideInInspector] public bool _sprinting = false;
-    [HideInInspector] public bool _grounded;
+    [HideInInspector] public bool _grounded = false;
     [HideInInspector] public Vector3 _location;
     [HideInInspector] public float _yRotation = 0f;
     [HideInInspector] public float _xRotation = 0f;
@@ -52,6 +53,7 @@ public class playerMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate() 
     {
+        GroundCheck();
         MouseRotation();
         CheckInput();
         RigidbodyMovement();
@@ -64,6 +66,7 @@ public class playerMovement : MonoBehaviour
     {
         if(Input.GetKey(KeyCode.LeftShift)){_sprinting = true;}else{_sprinting = false;}
         if(Input.GetKey(KeyCode.LeftControl)){_crouching = true;}else{_crouching = false;}
+        if(Input.GetKey(KeyCode.Space)){Jump();}
     }
 
     void RigidbodyMovement()
@@ -106,9 +109,17 @@ public class playerMovement : MonoBehaviour
             }
         }
 
-        //sets velocity
-        _tempVelocity = (transform.forward * _vertical * _tSpeed) + (transform.right * _horizontal * _tSpeed);
-        _rb.velocity = _tempVelocity;
+        if(!_jumping)
+        {
+            //sets velocity
+            _tempVelocity = new Vector3();
+
+            _tempVelocity.x = (transform.forward.x * _vertical * _tSpeed) + (transform.right.x * _horizontal * _tSpeed);
+            _tempVelocity.z = (transform.forward.z * _vertical * _tSpeed) + (transform.right.z * _horizontal * _tSpeed);
+            _tempVelocity.y = _rb.velocity.y;
+
+            _rb.velocity = _tempVelocity;
+        }
     }
 
     void MouseRotation()
@@ -141,13 +152,38 @@ public class playerMovement : MonoBehaviour
 
     void Jump()
     {
+        //if youre crouched and try to jump plays the uncrouch anim, cant move until uncrouched
+        if(_crouching)
+        {
+            ToggleCrouch();
+            return;
+        }
 
+        //checks if grounded
+        _grounded = Physics.Raycast(_groundPoint.position, Vector3.down, _groundCheckDistance, _ground);
+        if(!_grounded){return;}
+
+        //adds the jump force
+        _rb.AddForce(Vector3.up * _jumpPower, ForceMode.Impulse);
+        _jumping = true;
+    }
+
+    //just checks if grounded, not particularly useful yet
+    void GroundCheck()
+    {
+        _grounded = Physics.Raycast(_groundPoint.position, Vector3.down, _groundCheckDistance, _ground);
+        if(_grounded)
+        {
+            _jumping = false;
+        }
     }
 
     void ToggleCrouch()
     {
         if(_crouching){
             //anim.setbool crouching false
+
+            //this is temp and will be replaced by the uncrouch function below
             _crouching = false;
         }
     }
