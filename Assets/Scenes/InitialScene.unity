@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 7223.0156, g: 7720.1875, b: 9313.914, a: 1}
+  m_IndirectSpecularColor: {r: 7656.914, g: 8327.914, b: 10307.695, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -9270,6 +9270,54 @@ Transform:
   m_Father: {fileID: 444198438120556745}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1914740333
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1914740335}
+  - component: {fileID: 1914740334}
+  m_Layer: 0
+  m_Name: Discord
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1914740334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1914740333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c83983196a219e4a9ae6e540dd7d7b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  applicationID: 1085640187759034459
+  details: Playing the greatest game ever made (Currently in development)
+  largeImage: gamelogo
+  largeText: Life Of Bean
+--- !u!4 &1914740335
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1914740333}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -101.409164, y: -5.7046165, z: -154.97528}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 26
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1953454694
 GameObject:
   m_ObjectHideFlags: 0
@@ -10322,7 +10370,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 444198437842782993}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -70.18, y: 0.31, z: -161.42}
+  m_LocalPosition: {x: -70.18, y: 0.631, z: -161.42}
   m_LocalScale: {x: 1.327, y: 2.6326826, z: 1.327}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -11676,7 +11724,7 @@ MeshCollider:
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 2186430941476567602, guid: 91bead2226b7eea4ab39177a38f0d71e, type: 3}
+  m_Mesh: {fileID: 2186430941476567602, guid: ed18602d2772fa042ac28b1c90211711, type: 3}
 --- !u!4 &5680519942540785671
 Transform:
   m_ObjectHideFlags: 0
@@ -11881,7 +11929,7 @@ MeshCollider:
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 8825875481077153662, guid: 91bead2226b7eea4ab39177a38f0d71e, type: 3}
+  m_Mesh: {fileID: 8825875481077153662, guid: 89bbb6df6d505c64588f28e2c68e783f, type: 3}
 --- !u!23 &7416691523576066445
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -12147,7 +12195,7 @@ MeshCollider:
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: -4423459437229558441, guid: 91bead2226b7eea4ab39177a38f0d71e, type: 3}
+  m_Mesh: {fileID: -4423459437229558441, guid: ed18602d2772fa042ac28b1c90211711, type: 3}
 --- !u!33 &8168969870829614307
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -12220,7 +12268,7 @@ MeshCollider:
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: -629719859055844128, guid: 91bead2226b7eea4ab39177a38f0d71e, type: 3}
+  m_Mesh: {fileID: -629719859055844128, guid: ed18602d2772fa042ac28b1c90211711, type: 3}
 --- !u!33 &8401952776677435772
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -12544,4 +12592,4 @@ MeshCollider:
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 8420293092928972554, guid: 91bead2226b7eea4ab39177a38f0d71e, type: 3}
+  m_Mesh: {fileID: 8420293092928972554, guid: 89bbb6df6d505c64588f28e2c68e783f, type: 3}
