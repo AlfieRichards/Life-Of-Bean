@@ -18,7 +18,7 @@ MonoBehaviour:
     m_Value: 1
   intensity:
     m_OverrideState: 1
-    m_Value: 0.5
+    m_Value: 0.01
   maximumVelocity:
     m_OverrideState: 0
     m_Value: 200
@@ -339,7 +339,7 @@ MonoBehaviour:
     m_Value: 1
   fixedExposure:
     m_OverrideState: 1
-    m_Value: 9.1828785
+    m_Value: 15
   compensation:
     m_OverrideState: 1
     m_Value: -0.96

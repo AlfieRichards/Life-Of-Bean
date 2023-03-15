@@ -3,7 +3,62 @@ guid: ed18602d2772fa042ac28b1c90211711
 ModelImporter:
   serializedVersion: 22103
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Door
+    second: {fileID: 2100000, guid: 4bf7c0657790a6c4bae4cc0c10d5b4fc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: DoorFrame
+    second: {fileID: 2100000, guid: 81fed751ccf846b4c8eb97b3ad8444d3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Flooring
+    second: {fileID: 2100000, guid: 219989715b36e7244a410e95220d35d4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: LightBar
+    second: {fileID: 2100000, guid: b59b6edf499af5f49aa2d2e3d1206cc5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: LightBody
+    second: {fileID: 2100000, guid: de987ea2cf24fb94fa5fec90ac817e98, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RangeFlooring
+    second: {fileID: 2100000, guid: a4bab5e54f8ac4944a7ebcbfd25f08a4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Table
+    second: {fileID: 2100000, guid: c4c0de8a72ae96a408d94b4387cd0170, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TableEdge
+    second: {fileID: 2100000, guid: 07b7de4b9c5f813438c538c8cee233d0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TableFraming
+    second: {fileID: 2100000, guid: a8d0418edb915994fa0341df72fd7b7f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Walls
+    second: {fileID: 2100000, guid: 6220ac5be78c9734b93866cbc4553b6c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: double-fire-exit-2
+    second: {fileID: 2100000, guid: c8bcab6e9461e924ea347ab6de521d9a, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

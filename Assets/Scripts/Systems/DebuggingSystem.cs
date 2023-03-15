@@ -49,6 +49,7 @@ public class DebuggingSystem : MonoBehaviour
                     _showPlayer = true;
                 }
             }
+            GUI.Label(new Rect(20, 100, 150, 20), _player._fps + " FPS");
 
             if(_showWeapons)
             {
