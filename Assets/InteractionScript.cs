@@ -15,6 +15,7 @@ public class InteractionScript : MonoBehaviour
     [SerializeField] private float _targetSpeed = 5f;
 
     [SerializeField] private GameObject _target;
+    [SerializeField] private GameObject _targetPaper;
     [SerializeField] private Transform _targetStart;
     [SerializeField] private Transform _targetEnd;
 
@@ -50,6 +51,7 @@ public class InteractionScript : MonoBehaviour
                 if (Vector3.Distance(_target.transform.position, _targetStart.position) > 0.01f)
                 {
                     _target.transform.position = Vector3.MoveTowards(_target.transform.position, _targetStart.position, step);
+                    _targetPaper.transform.position = Vector3.MoveTowards(_targetPaper.transform.position, _targetStart.position, step);
                 }
                 else
                 {
@@ -63,6 +65,7 @@ public class InteractionScript : MonoBehaviour
                 if (Vector3.Distance(_target.transform.position, _targetEnd.position) > 0.01f)
                 {
                     _target.transform.position = Vector3.MoveTowards(_target.transform.position, _targetEnd.position, step);
+                    _targetPaper.transform.position = Vector3.MoveTowards(_targetPaper.transform.position, _targetStart.position, step);
                 }
                 else
                 {

@@ -21,6 +21,7 @@ public class weaponScript : MonoBehaviour
     [SerializeField] private int _range;
     [SerializeField] private int _damage;
     [SerializeField] private int _reloadTime; //reload anim clip time
+    [SerializeField] private GameObject _bulletHole; //hole prefab
     
     //enemy options
     [Header("Enemy Options")]
@@ -184,10 +185,15 @@ public class weaponScript : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(_firePoint.position, transform.TransformDirection(Vector3.forward), out hit, _range, _damageable))
         {
-
-            //deals damage to hit object
-            //hit.takeDamage(damage);
-
+            if(hit.transform.tag == "Penetrable")
+            {
+                Instantiate(_bulletHole, hit.point, Quaternion.FromToRotation(transform.up, hit.normal));
+            }
+            else
+            {
+                //deals damage to hit object
+                //hit.takeDamage(damage);
+            }
 
             //Debug code
             Debug.Log("Did Hit");

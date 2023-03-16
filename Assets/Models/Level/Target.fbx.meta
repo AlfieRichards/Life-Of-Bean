@@ -3,7 +3,42 @@ guid: c85f3e7ea114b124b894f56ce5e1be69
 ModelImporter:
   serializedVersion: 22103
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: LightBody
+    second: {fileID: 2100000, guid: cf73d61c7d8bf3045981aaa8dd29b4e7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.001
+    second: {fileID: 2100000, guid: 4d970ad888dce4d47879a9d90594a186, type: 2}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Target Tex
+    second: {fileID: 2800000, guid: b0b3fd61850648e42aa26858adb2a195, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: brushed-metal_metallic
+    second: {fileID: 2800000, guid: f42e3176597374f42bfc18d6ffe5f2fe, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: brushed-metal_normal-ogl
+    second: {fileID: 2800000, guid: 9c4925e00b6118f458bcd3214d841e46, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: brushed-metal_roughness
+    second: {fileID: 2800000, guid: 31b87c704212db346b0ea349921947f5, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: paperNormal
+    second: {fileID: 2800000, guid: 55f8fa9b679203b46a8abef5e61c5808, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
