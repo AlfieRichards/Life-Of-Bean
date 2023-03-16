@@ -8,6 +8,12 @@ public class weaponScript : MonoBehaviour
     [Header("Fire Location")]
     [SerializeField] private Transform _firePoint;
 
+
+    //camera location
+    [Header("Player Camera")]
+    [SerializeField] private Transform _camera;
+    [SerializeField] private Transform _spineEquivelent;
+
     //ammo volumes
     [Header("Ammunition Options")]
     [SerializeField] public int _magSize; //total mag size
@@ -26,7 +32,7 @@ public class weaponScript : MonoBehaviour
     //enemy options
     [Header("Enemy Options")]
     //enemy layers
-    [SerializeField] private LayerMask _damageable;
+    [SerializeField] private LayerMask _NotDamagable;
 
 
 
@@ -104,6 +110,7 @@ public class weaponScript : MonoBehaviour
         if(!_firing && !_reloading)
         {
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 100f, Color.green);
+            Debug.DrawRay(_camera.position, transform.TransformDirection(Vector3.forward)* 100f, Color.black);
         }
 
         //if press r
@@ -181,22 +188,58 @@ public class weaponScript : MonoBehaviour
         _canFire = false;
         Invoke("ShotDelay", _shotDelay);
 
+
+        //Physics.Raycast(_firePoint.position, transform.TransformDirection(Vector3.forward), out hit, _range, _damageable
+
+
         //fires primary raycast
-        RaycastHit hit;
-        if (Physics.Raycast(_firePoint.position, transform.TransformDirection(Vector3.forward), out hit, _range, _damageable))
+        RaycastHit cameraHit;
+        if (Physics.Raycast(_camera.position, transform.TransformDirection(Vector3.forward), out cameraHit, _range))
         {
-            if(hit.transform.tag == "Penetrable")
+            Debug.Log(Physics.Linecast(_firePoint.position, cameraHit.point));
+            Debug.DrawLine(_firePoint.position, cameraHit.point, Color.white, 5f, true);
+            //check to see if the gun can hit it
+            if (Physics.Linecast(_firePoint.position, cameraHit.point, _NotDamagable))
             {
-                Instantiate(_bulletHole, hit.point, Quaternion.FromToRotation(transform.up, hit.normal));
+                Debug.Log("Weapon Obstructed");
+                RaycastHit weaponHit;
+
+                if(Physics.Raycast(_firePoint.position, transform.TransformDirection(Vector3.forward), out weaponHit, _range))
+                {
+                    //puts hole in targets
+                    if(weaponHit.transform.tag == "Penetrable")
+                    {
+                        Instantiate(_bulletHole, weaponHit.point, Quaternion.FromToRotation(transform.up, weaponHit.normal));
+                    }
+                    //everything but the targets
+                    else
+                    {
+                        //deals damage to hit object
+                        //hit.takeDamage(damage);
+                    }
+
+                    //Debug code
+                    Debug.Log("Did Hit");
+                }
             }
             else
             {
-                //deals damage to hit object
-                //hit.takeDamage(damage);
-            }
+                Debug.Log("Weapon UnObstructed");
+                //puts hole in targets
+                if(cameraHit.transform.tag == "Penetrable")
+                {
+                    Instantiate(_bulletHole, cameraHit.point, Quaternion.FromToRotation(transform.up, cameraHit.normal));
+                }
+                //everything but the targets
+                else
+                {
+                    //deals damage to hit object
+                    //hit.takeDamage(damage);
+                }
 
-            //Debug code
-            Debug.Log("Did Hit");
+                //Debug code
+                Debug.Log("Did Hit");
+            }
         }
 
         //subtracts from ammo
