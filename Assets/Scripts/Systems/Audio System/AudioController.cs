@@ -6,35 +6,18 @@ using System;
 using System.Linq;
 using UnityEngine.SceneManagement;
 
-
-public class AudioManager : MonoBehaviour
+public class AudioController : MonoBehaviour
 {
-
     public Sound[] sounds;
     public Sound[] music;
     public AudioMixerGroup musicMixer;
     public AudioMixerGroup soundMixer;
     Scene currentScene;
 
-    public static AudioManager instance;
+
     // Start is called before the first frame update
     void Start()
     {
-        //makes it a singleton
-        if (instance == null)
-        {
-            instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-            return;
-        }
-        DontDestroyOnLoad(gameObject);
-
-        
-
-
         //add sounds to audio sources with their varying info
         foreach (Sound s in sounds)
         {
@@ -44,6 +27,8 @@ public class AudioManager : MonoBehaviour
             s.source.volume = s.volume;
             s.source.pitch = s.pitch;
             s.source.loop = s.loop;
+            s.source.spatialBlend = s.spatialBlend;
+            s.source.dopplerLevel = s.dopplerLevel;
             s.source.outputAudioMixerGroup = soundMixer;
         }
 
@@ -58,10 +43,10 @@ public class AudioManager : MonoBehaviour
             m.source.outputAudioMixerGroup = musicMixer;
         }
         //this could be used to play music when a scene loads
-        PlayMusic("BGM");
-        SceneMusic();
+        //PlayMusic("chh");
+        PlaySound("smg");
+        //SceneMusic();
     }
-
 
     void Update()
     {
@@ -100,6 +85,7 @@ public class AudioManager : MonoBehaviour
             Debug.LogWarning("Sound: " + name + " not found!");
             return;
         }
+        Debug.Log("Playing shit");
         s.source.PlayOneShot(s.clip, s.volume);
     }
 
@@ -107,7 +93,8 @@ public class AudioManager : MonoBehaviour
     {
         Component[] sources;
         sources = GetComponentsInChildren<AudioSource>();
-        foreach(AudioSource tSource in sources){
+        foreach(AudioSource tSource in sources)
+        {
             tSource.Stop();
         }
     }

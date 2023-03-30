@@ -28,6 +28,7 @@ public class weaponScript : MonoBehaviour
     [SerializeField] private int _damage;
     [SerializeField] private int _reloadTime; //reload anim clip time
     [SerializeField] private GameObject _bulletHole; //hole prefab
+    [HideInInspector] public AudioController audioController;
     
     //enemy options
     [Header("Enemy Options")]
@@ -58,6 +59,9 @@ public class weaponScript : MonoBehaviour
 
         //subtracts this mag from spare ammo
         Debug.Log(_spareAmmo);
+
+        //sets audio controller
+        audioController = GetComponent<AudioController>();
     }
 
     // Update is called once per frame
@@ -187,6 +191,9 @@ public class weaponScript : MonoBehaviour
         //adds correct delay inbetween shots
         _canFire = false;
         Invoke("ShotDelay", _shotDelay);
+
+        //fire sound
+        audioController.PlaySound("fire");
 
 
         //Physics.Raycast(_firePoint.position, transform.TransformDirection(Vector3.forward), out hit, _range, _damageable

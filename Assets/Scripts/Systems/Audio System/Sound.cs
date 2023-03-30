@@ -11,9 +11,13 @@ public class Sound
     public AudioMixerGroup outputAudioMixerGroup;
 
     [Range(0f, 1f)]
-    public float volume;
+    public float volume = 1f;
     [Range(0.1f, 3f)]
-    public float pitch;
+    public float pitch = 1f;
+    [Range(0f, 1f)]
+    public float spatialBlend = 1f;
+    [Range(0f, 1f)]
+    public float dopplerLevel = 0f;
 
     public bool loop;
 

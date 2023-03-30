@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class TargetController : MonoBehaviour
 {
-    public Transform targetHolder;
-    public HingeJoint targetAnchor;
-    float amplification = 1;
-    public float z;
-    public float zDifference;
-    public Vector3 anchorIntended;
+    [SerializeField] private Transform _targetHolder;
+    [SerializeField] private HingeJoint _targetAnchor;
+    [HideInInspector] private float _amplification = 1;
+    [HideInInspector] private float _z;
+    [HideInInspector] private float _zDifference;
+    [HideInInspector] private Vector3 _anchorIntended;
 
     // Start is called before the first frame update
     void Start()
@@ -20,12 +20,12 @@ public class TargetController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        zDifference = targetHolder.position.z - targetAnchor.connectedAnchor.z;
-        z = targetAnchor.connectedAnchor.z + (zDifference * amplification);
-        anchorIntended = new Vector3(targetAnchor.connectedAnchor.x, targetAnchor.connectedAnchor.y, z);
-        targetAnchor.connectedAnchor = anchorIntended;
+        _zDifference = _targetHolder.position.z - _targetAnchor.connectedAnchor.z;
+        _z = _targetAnchor.connectedAnchor.z + (_zDifference * _amplification);
+        _anchorIntended = new Vector3(_targetAnchor.connectedAnchor.x, _targetAnchor.connectedAnchor.y, _z);
+        _targetAnchor.connectedAnchor = _anchorIntended;
 
-        targetAnchor.autoConfigureConnectedAnchor = true;
-        targetAnchor.autoConfigureConnectedAnchor = false;
+        _targetAnchor.autoConfigureConnectedAnchor = true;
+        _targetAnchor.autoConfigureConnectedAnchor = false;
     }
 }

@@ -139,7 +139,7 @@ public class playerMovement : MonoBehaviour
         float _mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
         float _mouseY = -Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
 
-        Debug.Log("x: " + _mouseX + " y: " + _mouseY);
+        //Debug.Log("x: " + _mouseX + " y: " + _mouseY);
 
         //stops rot from getting infinitely higher and going out of the limits of a float
         if(_xRotation > 360 || _xRotation < -360)
