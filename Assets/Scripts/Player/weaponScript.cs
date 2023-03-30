@@ -209,7 +209,8 @@ public class weaponScript : MonoBehaviour
                     //puts hole in targets
                     if(weaponHit.transform.tag == "Penetrable")
                     {
-                        Instantiate(_bulletHole, weaponHit.point, Quaternion.FromToRotation(transform.up, weaponHit.normal));
+                        GameObject hole = Instantiate(_bulletHole, weaponHit.point, Quaternion.FromToRotation(transform.up, weaponHit.normal));
+                        hole.transform.parent = weaponHit.transform;
                     }
                     //everything but the targets
                     else
@@ -228,7 +229,8 @@ public class weaponScript : MonoBehaviour
                 //puts hole in targets
                 if(cameraHit.transform.tag == "Penetrable")
                 {
-                    Instantiate(_bulletHole, cameraHit.point, Quaternion.FromToRotation(transform.up, cameraHit.normal));
+                    GameObject hole = Instantiate(_bulletHole, cameraHit.point, Quaternion.FromToRotation(transform.up, cameraHit.normal));
+                    hole.transform.parent = cameraHit.transform;
                 }
                 //everything but the targets
                 else

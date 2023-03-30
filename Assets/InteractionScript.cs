@@ -7,15 +7,14 @@ public class InteractionScript : MonoBehaviour
     [Header("Target Options")]
     //_target Functionality
     [SerializeField] private bool _isTargetSwitch = false;
-    [HideInInspector] private bool _movingTarget = false;
+    [SerializeField] private bool _movingTarget = false;
 
     //false is start, true is end
-    [HideInInspector] private bool _targetState = false;
+    [SerializeField] private bool _targetState = false;
 
     [SerializeField] private float _targetSpeed = 5f;
 
     [SerializeField] private GameObject _target;
-    [SerializeField] private GameObject _targetPaper;
     [SerializeField] private Transform _targetStart;
     [SerializeField] private Transform _targetEnd;
 
@@ -48,10 +47,10 @@ public class InteractionScript : MonoBehaviour
             if(_targetState)
             {
                 // Check if the position of the cube and sphere are approximately equal.
-                if (Vector3.Distance(_target.transform.position, _targetStart.position) > 0.01f)
+                if (Vector3.Distance(_target.transform.position, _targetStart.position) > 1f)
                 {
-                    _target.transform.position = Vector3.MoveTowards(_target.transform.position, _targetStart.position, step);
-                    //_targetPaper.transform.position = Vector3.MoveTowards(_targetPaper.transform.position, _targetStart.position, step);
+                    Vector3 intendedPos = new Vector3(_target.transform.position.x, _target.transform.position.y, _targetStart.position.z);
+                    _target.transform.position = Vector3.MoveTowards(_target.transform.position, intendedPos, step);
                 }
                 else
                 {
@@ -62,10 +61,10 @@ public class InteractionScript : MonoBehaviour
             else
             {
                 // Check if the position of the cube and sphere are approximately equal.
-                if (Vector3.Distance(_target.transform.position, _targetEnd.position) > 0.01f)
+                if (Vector3.Distance(_target.transform.position, _targetEnd.position) > 1f)
                 {
-                    _target.transform.position = Vector3.MoveTowards(_target.transform.position, _targetEnd.position, step);
-                    //_targetPaper.transform.position = Vector3.MoveTowards(_targetPaper.transform.position, _targetStart.position, step);
+                    Vector3 intendedPos = new Vector3(_target.transform.position.x, _target.transform.position.y, _targetEnd.position.z);
+                    _target.transform.position = Vector3.MoveTowards(_target.transform.position, intendedPos, step);
                 }
                 else
                 {

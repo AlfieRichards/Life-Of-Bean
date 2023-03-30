@@ -11,8 +11,7 @@ GameObject:
   - component: {fileID: 7283482920754146476}
   - component: {fileID: 7891551681639168853}
   - component: {fileID: 3631037660735331055}
-  - component: {fileID: 6960538334064026729}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BulletHole
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,8 +26,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 392509747722787052}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -0.0000000013994, y: 0.0000000027988, z: -0}
-  m_LocalScale: {x: 0.056986917, y: 0.000810069, z: 0.056986917}
+  m_LocalPosition: {x: -0.0000000013994, y: 0.0000000027988, z: 4e-15}
+  m_LocalScale: {x: 0.056986917, y: 0.001467464, z: 0.056986917}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -84,17 +83,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &6960538334064026729
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 392509747722787052}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
