@@ -27,8 +27,10 @@ public class weaponScript : MonoBehaviour
     [SerializeField] private int _range;
     [SerializeField] private int _damage;
     [SerializeField] private int _reloadTime; //reload anim clip time
+    [SerializeField] private int _adsReloadTime; //ads reload anim clip time
     [SerializeField] private GameObject _bulletHole; //hole prefab
     [HideInInspector] public AudioController audioController;
+    [SerializeField] public AnimationManager animController;
     
     //enemy options
     [Header("Enemy Options")]
@@ -39,6 +41,8 @@ public class weaponScript : MonoBehaviour
 
     //firing options
     [HideInInspector] public bool _firing = false;
+    [HideInInspector] public bool _aiming = false;
+    [HideInInspector] public bool _tempAiming = false;
     [HideInInspector] public bool _canFire = true;
     private float _shotDelay;
 
@@ -67,6 +71,8 @@ public class weaponScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //shooting
+
         //if left click
         if (Input.GetButton("Fire1"))
         {
@@ -90,12 +96,41 @@ public class weaponScript : MonoBehaviour
             }
         }
 
-        //if not clicking
+        //if not left clicking
         if (Input.GetButtonUp("Fire1"))
         {
             //stops firing
             _firing = false;
         }
+
+
+        //aiming
+
+        //if right click
+        if (Input.GetButtonDown("Fire2") && !_reloading)
+        {
+            _aiming = true;
+
+            //animations
+
+            //anim would play here
+            AnimHandler("ads in");
+        }
+
+        //if not right clicking
+        if (Input.GetButtonUp("Fire2") && !_reloading && _aiming)
+        {
+            //stops firing
+            _aiming = false;
+
+            //animations
+
+            //anim would play here
+            AnimHandler("ads out");
+        }
+
+
+        //debug rays
 
         //if weapon is shooting
         if(_firing && !_reloading)
@@ -117,17 +152,28 @@ public class weaponScript : MonoBehaviour
             Debug.DrawRay(_camera.position, transform.TransformDirection(Vector3.forward)* 100f, Color.black);
         }
 
+
+        //reloading
+
         //if press r
         if(Input.GetKeyDown("r"))
         {
             //checks there is enough ammo to reload
-            if(_spareAmmo > 0)
+            if(_spareAmmo > 0 && !_reloading)
             {
                 //reloads the weapon after the reload time
                 _reloading = true;
                 _canReload = true;
+
+
+                //animations
+
                 //anim would play here
-                Invoke("Reload", _reloadTime);
+                if(!_aiming){AnimHandler("reload");}
+                else{AnimHandler("ads reload");}
+
+                if(!_aiming){Invoke("Reload", _reloadTime);}
+                else{Invoke("Reload", _adsReloadTime); _tempAiming = true;}
             }
             else
             {
@@ -135,8 +181,25 @@ public class weaponScript : MonoBehaviour
                 Debug.Log("No ammo");
                 _reloading = false;
                 _canReload = false;
-                //play a sound or anim here for no ammo
+                
+
+                //animations
+
+                //anim would play here
+                if(!_aiming){AnimHandler("reload no spare");}
+                else{AnimHandler("ads reload no spare");}
             }
+        }
+
+
+        //inspecting
+
+        if(Input.GetKeyDown("f"))
+        {
+            //animations
+
+            //anim would play here
+            AnimHandler("inspect");
         }
     }
 
@@ -178,6 +241,8 @@ public class weaponScript : MonoBehaviour
             _reloading = false;
             //do some kinda out of ammo anim or sound here. Will also be played if you dont need to reload
         }
+
+        if (!Input.GetButton("Fire2") && _tempAiming){AnimHandler("ads out"); _tempAiming = false;}
     }
 
     void FireWeapon()
@@ -192,8 +257,11 @@ public class weaponScript : MonoBehaviour
         _canFire = false;
         Invoke("ShotDelay", _shotDelay);
 
-        //fire sound
-        audioController.PlaySound("fire");
+        //animations
+
+        //anim would play here
+        if(!_aiming){AnimHandler("fire");}
+        else{AnimHandler("ads fire");}
 
 
         //Physics.Raycast(_firePoint.position, transform.TransformDirection(Vector3.forward), out hit, _range, _damageable
@@ -264,5 +332,97 @@ public class weaponScript : MonoBehaviour
     {
         //allows firing after the set delay on invoke
         _canFire = true;
+    }
+
+
+    void AnimHandler(string animReq)
+    {
+        switch (animReq)
+        {
+            case "equip":
+                //audioController.PlayOneShotSound("equip");
+                animController.PlayAnim("equip");
+                break;
+            case "fire":
+                audioController.PlayOneShotSound("fire");
+                animController.PlayAnim("fire");
+                break;
+            case "reload":
+                //audioController.PlayOneShotSound("reload");
+                animController.PlayAnim("reload");
+                break;
+            case "reload no spare":
+                //audioController.PlayOneShotSound("reload no spare");
+                animController.PlayAnim("reload no spare");
+                break;
+            case "reload spare":
+                // audioController.PlayOneShotSound("reload spare");
+                // animController.PlayAnim("reload spare");
+                break;
+            case "idle":
+                //audioController.PlayOneShotSound("idle");
+                animController.PlayAnim("idle");
+                break;
+            case "walk":
+                //audioController.PlayOneShotSound("walk");
+                animController.PlayAnim("walk");
+                break;
+            case "sprint entry":
+                //audioController.PlayOneShotSound("sprint entry");
+                animController.PlayAnim("sprint entry");
+                break;
+            case "sprint loop":
+                //audioController.PlayOneShotSound("sprint loop");
+                animController.PlayAnim("sprint loop");
+                break;
+            case "sprint exit":
+                //audioController.PlayOneShotSound("sprint exit");
+                animController.PlayAnim("sprint exit");
+                break;
+            case "ads in":
+                //audioController.PlayOneShotSound("ads in");
+                animController.PlayAnim("ads in");
+                break;
+            case "ads fire":
+                audioController.PlayOneShotSound("fire");
+                animController.PlayAnim("ads fire");
+                break;
+            case "ads idle":
+                //audioController.PlayOneShotSound("ads idle");
+                animController.PlayAnim("ads idle");
+                break;
+            case "ads reload":
+                //audioController.PlayOneShotSound("ads reload");
+                animController.PlayAnim("ads reload");
+                break;
+            case "ads dryfire":
+                // audioController.PlayOneShotSound("ads dryfire");
+                // animController.PlayAnim("ads dryfire");
+                break;
+            case "ads reload no spare":
+                //audioController.PlayOneShotSound("ads reload no spare");
+                animController.PlayAnim("ads reload no spare");
+                break;
+            case "ads reload spare":
+                // audioController.PlayOneShotSound("ads reload spare");
+                // animController.PlayAnim("ads reload spare");
+                break;
+            case "ads out":
+                //audioController.PlayOneShotSound("ads out");
+                animController.PlayAnim("ads out");
+                break;
+            case "inspect":
+                //audioController.PlayOneShotSound("inspect");
+                animController.PlayAnim("inspect");
+                break;
+            case "dryfire":
+                // audioController.PlayOneShotSound("dryfire");
+                // animController.PlayAnim("dryfire");
+                break;                       
+            default:
+                // If the input string does not match any animation name, print an error message
+                Debug.LogError("Animation not found: " + animReq);
+                break;
+        }
     }
 }

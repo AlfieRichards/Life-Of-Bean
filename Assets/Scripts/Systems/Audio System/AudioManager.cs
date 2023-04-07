@@ -58,8 +58,8 @@ public class AudioManager : MonoBehaviour
             m.source.outputAudioMixerGroup = musicMixer;
         }
         //this could be used to play music when a scene loads
-        PlayMusic("BGM");
-        SceneMusic();
+        //PlayMusic("BGM"); this will play the music sound with the name BGM
+        //SceneMusic(); alter this function to play different background music depending on scene
     }
 
 
@@ -100,7 +100,7 @@ public class AudioManager : MonoBehaviour
             Debug.LogWarning("Sound: " + name + " not found!");
             return;
         }
-        s.source.PlayOneShot(s.clip, s.volume);
+        s.source.Play();
     }
 
     public void StopAll()
@@ -125,7 +125,7 @@ public class AudioManager : MonoBehaviour
         m.source.Play();
     }
 
-    //to play do
+    //to play from anywhere do
     //FindObjectOfType<AudioManager>().PlaySound("SoundName")
 
     //to edit volume from another script do

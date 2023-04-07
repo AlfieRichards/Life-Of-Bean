@@ -42,10 +42,14 @@ public class AudioController : MonoBehaviour
             m.source.loop = m.loop;
             m.source.outputAudioMixerGroup = musicMixer;
         }
+
         //this could be used to play music when a scene loads
-        //PlayMusic("chh");
-        PlaySound("smg");
-        //SceneMusic();
+        //PlayMusic("BGM"); this will play the music sound with the name BGM
+        //SceneMusic(); alter this function to play different background music depending on scene
+        
+        //use these for individual sounds
+        //PlayOneShotSound("smg"); Plays oneshot sound. Use for overlapping audio such as gunshots
+        //PlaySound("reload");  plays sound use for non overlapping audio like grenades, footsteps or reloads
     }
 
     void Update()
@@ -75,7 +79,20 @@ public class AudioController : MonoBehaviour
     //this could be used to play music when a scene loads
 
 
-    //plays sound
+    //plays oneshot sound. Use for overlapping audio such as gunshots
+    public void PlayOneShotSound(string name)
+    {
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+        //custom error message when cant find clip name
+        if (s == null)
+        {
+            Debug.LogWarning("Sound: " + name + " not found!");
+            return;
+        }
+        s.source.PlayOneShot(s.clip, s.volume);
+    }
+
+    //plays sound use for non overlapping audio like grenades or footsteps
     public void PlaySound(string name)
     {
         Sound s = Array.Find(sounds, sound => sound.name == name);
@@ -85,8 +102,7 @@ public class AudioController : MonoBehaviour
             Debug.LogWarning("Sound: " + name + " not found!");
             return;
         }
-        Debug.Log("Playing shit");
-        s.source.PlayOneShot(s.clip, s.volume);
+        s.source.Play();
     }
 
     public void StopAll()
@@ -108,11 +124,10 @@ public class AudioController : MonoBehaviour
             Debug.LogWarning("Music: " + name + " not found!");
             return;
         }
-        Debug.Log("Playing shit");
         m.source.Play();
     }
 
-    //to play do
+    //to play from anywhere do
     //FindObjectOfType<AudioManager>().PlaySound("SoundName")
 
     //to edit volume from another script do

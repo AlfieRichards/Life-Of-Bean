@@ -149,7 +149,7 @@ public class playerMovement : MonoBehaviour
 
         //constrains y input
         _yRotation = _yRotation += _mouseY;
-        _yRotation = Mathf.Clamp(_yRotation, -75f, 75f);
+        _yRotation = Mathf.Clamp(_yRotation, -65f, 65f);
 
         _xRotation = _xRotation += _mouseX;
 
