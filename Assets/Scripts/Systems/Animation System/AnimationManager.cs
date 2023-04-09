@@ -14,7 +14,7 @@ public class AnimationManager : MonoBehaviour
 
     public float fadeLength = 0.3f;
 
-    private Animation animSource;
+    public Animation animSource;
 
 
     // Start is called before the first frame update
@@ -32,22 +32,11 @@ public class AnimationManager : MonoBehaviour
             //assigns the animation clips
             animSource.AddClip(a.clip, a.name);
         }
-
-        //this could be used to play music when a scene loads
-        //PlayMusic("BGM"); this will play the music sound with the name BGM
-        //SceneMusic(); alter this function to play different background music depending on scene
-        
-        //use these for individual sounds
-        //PlayOneShotSound("smg"); Plays oneshot sound. Use for overlapping audio such as gunshots
-        //PlaySound("reload");  plays sound use for non overlapping audio like grenades, footsteps or reloads
     }
 
     void Update()
     {
-        // if(!animSource.isPlaying)
-        // {
-        //     PlayAnim("Idle");
-        // }
+
     }
 
     //plays sound use for non overlapping audio like grenades or footsteps
@@ -61,8 +50,8 @@ public class AnimationManager : MonoBehaviour
             return;
         }
 
-        //animSource.CrossFadeQueued(a.name, fadeLength, QueueMode.PlayNow);
-        animSource.PlayQueued(a.name, QueueMode.PlayNow);
+        animSource.CrossFadeQueued(a.name, fadeLength, QueueMode.PlayNow);
+        //animSource.PlayQueued(a.name, QueueMode.PlayNow);
     }
 
     public void StopAll()
@@ -72,11 +61,4 @@ public class AnimationManager : MonoBehaviour
             animSource.Stop();
         }
     }
-
-    //to play from anywhere do
-    //FindObjectOfType<AudioManager>().PlaySound("SoundName")
-
-    //to edit volume from another script do
-    //AudioManager manager = FindObjectOfType<AudioManager>();
-    //audioMixer.SetFloat("BgmVolume", volume);
 }

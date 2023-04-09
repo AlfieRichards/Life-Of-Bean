@@ -33,6 +33,7 @@ public class playerMovement : MonoBehaviour
     //debuggingBools
     [HideInInspector] public bool _jumping = false;
     [HideInInspector] public bool _crouching = false;
+    [HideInInspector] public bool _moving = false;
     [HideInInspector] public bool _sprinting = false;
     [HideInInspector] public bool _grounded = false;
     [HideInInspector] public Vector3 _location;
@@ -92,6 +93,7 @@ public class playerMovement : MonoBehaviour
         //if youre crouched and try to moves plays the uncrouch anim, cant move until uncrouched
         if(Input.GetAxisRaw("Vertical") != 0 || Input.GetAxisRaw("Horizontal") != 0)
         {
+            _moving = true;
             if(_crouching)
             {
                 _tempVelocity = new Vector3(0,_rb.velocity.y,0);
@@ -100,6 +102,7 @@ public class playerMovement : MonoBehaviour
                 return;
             }
         }
+        else{_moving = false;}
 
         //if sprinting make move faster
         if(_sprinting)

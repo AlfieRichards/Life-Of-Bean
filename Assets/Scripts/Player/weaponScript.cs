@@ -11,6 +11,7 @@ public class weaponScript : MonoBehaviour
 
     //camera location
     [Header("Player Camera")]
+    [SerializeField] private playerMovement _movementScript;
     [SerializeField] private Transform _camera;
     [SerializeField] private Transform _spineEquivelent;
 
@@ -200,6 +201,25 @@ public class weaponScript : MonoBehaviour
 
             //anim would play here
             AnimHandler("inspect");
+        }
+
+
+        //animations
+
+        //idle animation
+        if(!animController.animSource.isPlaying && !_aiming && !_firing && !_reloading && !_movementScript._moving)
+        {
+            animController.PlayAnim("idle");
+        }
+
+        if(!_aiming && !_firing && !_reloading && _movementScript._moving)
+        {
+            animController.PlayAnim("walk");
+        }
+
+        if(!_aiming && !_firing && !_reloading && _movementScript._moving && _movementScript._sprinting)
+        {
+            animController.PlayAnim("sprint loop");
         }
     }
 
