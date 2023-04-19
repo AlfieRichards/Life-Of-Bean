@@ -32,6 +32,9 @@ public class weaponScript : MonoBehaviour
     [SerializeField] private GameObject _bulletHole; //hole prefab
     [HideInInspector] public AudioController audioController;
     [SerializeField] public AnimationManager animController;
+    bool walkAnimPlaying = false;
+    bool sprintAnimPlaying = false;
+    bool idleAnimPlaying = false;
     
     //enemy options
     [Header("Enemy Options")]
@@ -157,7 +160,7 @@ public class weaponScript : MonoBehaviour
         //reloading
 
         //if press r
-        if(Input.GetKeyDown("r"))
+        if(Input.GetKeyDown("r") && !_reloading)
         {
             //checks there is enough ammo to reload
             if(_spareAmmo > 0 && !_reloading)
@@ -207,19 +210,29 @@ public class weaponScript : MonoBehaviour
         //animations
 
         //idle animation
-        if(!animController.animSource.isPlaying && !_aiming && !_firing && !_reloading && !_movementScript._moving)
+        if(!idleAnimPlaying && !_aiming && !_firing && !_reloading && !_movementScript._moving)
         {
             animController.PlayAnim("idle");
+            idleAnimPlaying = true;
         }
 
-        if(!_aiming && !_firing && !_reloading && _movementScript._moving)
+        if(!animController.animSource.isPlaying)
+        {
+            walkAnimPlaying = false;
+            sprintAnimPlaying = false;
+            idleAnimPlaying = false;
+        }
+
+        if(!walkAnimPlaying && !sprintAnimPlaying && !_aiming && !_firing && !_reloading && _movementScript._moving)
         {
             animController.PlayAnim("walk");
+            walkAnimPlaying = true;
         }
 
-        if(!_aiming && !_firing && !_reloading && _movementScript._moving && _movementScript._sprinting)
+        if(!sprintAnimPlaying && !_aiming && !_firing && !_reloading && _movementScript._moving && _movementScript._sprinting)
         {
             animController.PlayAnim("sprint loop");
+            sprintAnimPlaying = true;
         }
     }
 

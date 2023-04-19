@@ -57,17 +57,17 @@ public class playerMovement : MonoBehaviour
 
     void Update()
     {
-        Application.targetFrameRate = -1;
         _deltaTime += (Time.deltaTime - _deltaTime) * 0.1f;
         _fps = 1.0f / _deltaTime;
         _fps = Mathf.Ceil(_fps);
+
+        MouseRotation();
     }
 
     // Update is called once per frame
     void FixedUpdate() 
     {
         GroundCheck();
-        MouseRotation();
         CheckInput();
         RigidbodyMovement();
         DebugCursor();
