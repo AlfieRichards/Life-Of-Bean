@@ -57,6 +57,7 @@ public class playerMovement : MonoBehaviour
 
     void Update()
     {
+        Application.targetFrameRate = -1;
         _deltaTime += (Time.deltaTime - _deltaTime) * 0.1f;
         _fps = 1.0f / _deltaTime;
         _fps = Mathf.Ceil(_fps);
@@ -140,27 +141,26 @@ public class playerMovement : MonoBehaviour
     {
         //gets mouse input
         float _mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
-        float _mouseY = -Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
+        float _mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
 
-        //Debug.Log("x: " + _mouseX + " y: " + _mouseY);
+        _xRotation -= _mouseY;
+        _xRotation = Mathf.Clamp(_xRotation, -65f, 65f);
 
-        //stops rot from getting infinitely higher and going out of the limits of a float
-        if(_xRotation > 360 || _xRotation < -360)
-        {
-            _xRotation = 0;
-        }
+        _camParentBone.transform.localRotation = Quaternion.Euler(_xRotation, 0f, 0f);
+        _playerBody.Rotate(Vector3.up * _mouseX);
 
-        //constrains y input
-        _yRotation = _yRotation += _mouseY;
-        _yRotation = Mathf.Clamp(_yRotation, -65f, 65f);
 
-        _xRotation = _xRotation += _mouseX;
+        // //constrains y input
+        // _yRotation = _yRotation += _mouseY;
+        // _yRotation = Mathf.Clamp(_yRotation, -65f, 65f);
 
-        //rotates player horizontally (y axis)
-        _playerBody.transform.rotation = Quaternion.Euler(0, _xRotation, 0);
+        // _xRotation = _xRotation += _mouseX;
 
-        //rotates player bone vertically (x axis)
-        _camParentBone.transform.rotation = Quaternion.Euler(_yRotation, _xRotation, 0);
+        // //rotates player horizontally (y axis)
+        // _playerBody.transform.rotation = Quaternion.Euler(0, _xRotation, 0);
+
+        // //rotates player bone vertically (x axis)
+        // _camParentBone.transform.rotation = Quaternion.Euler(_yRotation, 0, 0);
     }
 
 
