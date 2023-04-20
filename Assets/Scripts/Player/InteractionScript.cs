@@ -7,18 +7,26 @@ public class InteractionScript : MonoBehaviour
     [Header("Target Options")]
     //_target Functionality
     [SerializeField] private bool _isTargetSwitch = false;
+
+    [ConditionalHide("_isTargetSwitch", true)]
     [SerializeField] private bool _movingTarget = false;
 
     //false is start, true is end
+    [ConditionalHide("_isTargetSwitch", true)]
     [SerializeField] private bool _targetState = false;
 
+    [ConditionalHide("_isTargetSwitch", true)]
     [SerializeField] private float _targetSpeed = 5f;
 
+    [ConditionalHide("_isTargetSwitch", true)]
     [SerializeField] private GameObject _target;
+    [ConditionalHide("_isTargetSwitch", true)]
     [SerializeField] private Transform _targetStart;
+    [ConditionalHide("_isTargetSwitch", true)]
     [SerializeField] private Transform _targetEnd;
 
     //interaction bool
+    [ConditionalHide("_isTargetSwitch", true)]
     [HideInInspector] public bool _interacted = false;
 
     // Start is called before the first frame update

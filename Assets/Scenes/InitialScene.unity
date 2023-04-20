@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 5689.9883, g: 6919.9453, b: 9325.367, a: 1}
+  m_IndirectSpecularColor: {r: 5256.1836, g: 6311.9688, b: 8331.367, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -8532,7 +8532,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75cbdbc0b85d0164d9744d00f55cdfa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _firePoint: {fileID: 8884412991236911720}
+  _showVisualsOptions: 0
+  _showEffectsOptions: 0
+  _showCameraOptions: 0
+  _showAmmunitionOptions: 1
+  _showWeaponOptions: 1
+  _showEnemyOptions: 0
+  _hasAnimations: 1
+  animController: {fileID: 2132629060}
+  _bulletHole: {fileID: 392509747722787052, guid: 34dda2224adfeb74bbb200c720e4bd1a,
+    type: 3}
   _movementScript: {fileID: 269645598}
   _camera: {fileID: 5531060639489794259}
   _spineEquivelent: {fileID: 2132629059}
@@ -8545,10 +8554,7 @@ MonoBehaviour:
   _damage: 30
   _reloadTime: 4
   _adsReloadTime: 1
-  _bulletHole: {fileID: 392509747722787052, guid: 34dda2224adfeb74bbb200c720e4bd1a,
-    type: 3}
-  audioController: {fileID: 0}
-  animController: {fileID: 2132629060}
+  _firePoint: {fileID: 8884412991236911720}
   _NotDamagable:
     serializedVersion: 2
     m_Bits: 511
@@ -8558,6 +8564,7 @@ MonoBehaviour:
   _canFire: 1
   _canReload: 1
   _reloading: 0
+  audioController: {fileID: 0}
 --- !u!1 &1330640657
 GameObject:
   m_ObjectHideFlags: 0

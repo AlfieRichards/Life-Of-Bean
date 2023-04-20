@@ -4,41 +4,71 @@ using UnityEngine;
 
 public class weaponScript : MonoBehaviour
 {
-    //gun fire location
-    [Header("Fire Location")]
-    [SerializeField] private Transform _firePoint;
+    //toggleOptions
+    [Header("Toggle Options")]
+    public bool _showVisualsOptions;
+    public bool _showEffectsOptions;
+    public bool _showCameraOptions;
+    public bool _showAmmunitionOptions;
+    public bool _showWeaponOptions;
+    public bool _showEnemyOptions;
 
+    //animation
+    [ConditionalHide("_showVisualsOptions", true)]
+    [Header("Animation Options")]
+    public bool _hasAnimations;
+    [ConditionalHide("_showVisualsOptions", true)]
+    [SerializeField] public AnimationManager animController;
+    private bool walkAnimPlaying = false;
+    private bool sprintAnimPlaying = false;
+    private bool idleAnimPlaying = false;
+
+    //bullet hole
+    [Header("BulletHole Options")]
+    [ConditionalHide("_showEffectsOptions", true)]
+    [SerializeField] private GameObject _bulletHole; //hole prefab
 
     //camera location
     [Header("Player Camera")]
+    [ConditionalHide("_showCameraOptions", true)]
     [SerializeField] private playerMovement _movementScript;
+    [ConditionalHide("_showCameraOptions", true)]
     [SerializeField] private Transform _camera;
+    [ConditionalHide("_showCameraOptions", true)]
     [SerializeField] private Transform _spineEquivelent;
 
     //ammo volumes
     [Header("Ammunition Options")]
+    [ConditionalHide("_showAmmunitionOptions", true)]
     [SerializeField] public int _magSize; //total mag size
+    [ConditionalHide("_showAmmunitionOptions", true)]
     [SerializeField] public int _ammoCapacity; //ammo in mag
+    [ConditionalHide("_showAmmunitionOptions", true)]
     [SerializeField] public int _spareAmmo; //spare ammo to reload with
 
     //weapon properties
     [Header("Weapon Options")]
+    [ConditionalHide("_showWeaponOptions", true)]
     [SerializeField] private float _fireRate; //in rpm
+    [ConditionalHide("_showWeaponOptions", true)]
     [SerializeField] private int _fireMode; //0 = semi, 1 = automatic
+    [ConditionalHide("_showWeaponOptions", true)]
     [SerializeField] private int _range;
+    [ConditionalHide("_showWeaponOptions", true)]
     [SerializeField] private int _damage;
+    [ConditionalHide("_showWeaponOptions", true)]
     [SerializeField] private int _reloadTime; //reload anim clip time
+    [ConditionalHide("_showWeaponOptions", true)]
     [SerializeField] private int _adsReloadTime; //ads reload anim clip time
-    [SerializeField] private GameObject _bulletHole; //hole prefab
-    [HideInInspector] public AudioController audioController;
-    [SerializeField] public AnimationManager animController;
-    bool walkAnimPlaying = false;
-    bool sprintAnimPlaying = false;
-    bool idleAnimPlaying = false;
+
+    //gun fire location
+    [ConditionalHide("_showWeaponOptions", true)]
+    [SerializeField] private Transform _firePoint;
     
     //enemy options
     [Header("Enemy Options")]
     //enemy layers
+    [ConditionalHide("_showEnemyOptions", true)]
     [SerializeField] private LayerMask _NotDamagable;
 
 
@@ -54,6 +84,8 @@ public class weaponScript : MonoBehaviour
     //reloading options
     [HideInInspector] public bool _canReload = true;
     [HideInInspector] public bool _reloading = false;
+
+    [HideInInspector] public AudioController audioController;
 
 
     void Start()
@@ -200,9 +232,7 @@ public class weaponScript : MonoBehaviour
 
         if(Input.GetKeyDown("f"))
         {
-            //animations
-
-            //anim would play here
+            if(!_hasAnimations){return;}
             AnimHandler("inspect");
         }
 
@@ -212,12 +242,14 @@ public class weaponScript : MonoBehaviour
         //idle animation
         if(!idleAnimPlaying && !_aiming && !_firing && !_reloading && !_movementScript._moving)
         {
+            if(!_hasAnimations){return;}
             animController.PlayAnim("idle");
             idleAnimPlaying = true;
         }
 
         if(!animController.animSource.isPlaying)
         {
+            if(!_hasAnimations){return;}
             walkAnimPlaying = false;
             sprintAnimPlaying = false;
             idleAnimPlaying = false;
@@ -225,12 +257,14 @@ public class weaponScript : MonoBehaviour
 
         if(!walkAnimPlaying && !sprintAnimPlaying && !_aiming && !_firing && !_reloading && _movementScript._moving)
         {
+            if(!_hasAnimations){return;}
             animController.PlayAnim("walk");
             walkAnimPlaying = true;
         }
 
         if(!sprintAnimPlaying && !_aiming && !_firing && !_reloading && _movementScript._moving && _movementScript._sprinting)
         {
+            if(!_hasAnimations){return;}
             animController.PlayAnim("sprint loop");
             sprintAnimPlaying = true;
         }
@@ -370,6 +404,7 @@ public class weaponScript : MonoBehaviour
 
     void AnimHandler(string animReq)
     {
+        if(!_hasAnimations){return;}
         switch (animReq)
         {
             case "equip":
