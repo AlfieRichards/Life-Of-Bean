@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 5256.1836, g: 6311.9688, b: 8331.367, a: 1}
+  m_IndirectSpecularColor: {r: 5689.9883, g: 6919.9453, b: 9325.367, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -8440,12 +8440,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75cbdbc0b85d0164d9744d00f55cdfa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _showVisualsOptions: 0
-  _showEffectsOptions: 0
-  _showCameraOptions: 0
-  _showAmmunitionOptions: 0
-  _showWeaponOptions: 0
-  _showEnemyOptions: 0
+  _showVisualsOptions: 1
+  _showEffectsOptions: 1
+  _showCameraOptions: 1
+  _showAmmunitionOptions: 1
+  _showWeaponOptions: 1
+  _showEnemyOptions: 1
   _hasAnimations: 1
   animController: {fileID: 2132629060}
   _bulletHole: {fileID: 392509747722787052, guid: 34dda2224adfeb74bbb200c720e4bd1a,
@@ -16182,6 +16182,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1482495750756166649, guid: 63086797e709e69459e392b06f802b91,
+        type: 3}
+      propertyPath: _isTargetSwitch
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
