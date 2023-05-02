@@ -18,7 +18,7 @@ public class TargetController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         _zDifference = _targetHolder.position.z - _targetAnchor.connectedAnchor.z;
         _z = _targetAnchor.connectedAnchor.z + (_zDifference * _amplification);
