@@ -8,22 +8,22 @@ public class TargetController : MonoBehaviour
     [SerializeField] private HingeJoint _targetAnchor;
     [HideInInspector] private float _amplification = 1;
     [HideInInspector] private Vector3 _anchorIntended;
-    Rigidbody retard;
-    public GameObject twat;
+    Rigidbody rb;
+    public GameObject topHinge;
 
     // Start is called before the first frame update
     void Start()
     {
-        retard = twat.GetComponent<Rigidbody>();
+     rb = topHinge.GetComponent<Rigidbody>();
     }
 
     void Update()
     {
-        float _zDifference = _targetHolder.position.z - twat.transform.position.z;
-        float _z = twat.transform.position.z + (_zDifference * _amplification);
-        _anchorIntended = new Vector3(twat.transform.position.x, twat.transform.position.y, _z);
+        float _zDifference = _targetHolder.position.z - topHinge.transform.position.z;
+        float _z = topHinge.transform.position.z + (_zDifference * _amplification);
+        _destination = new Vector3(topHinge.transform.position.x, topHinge.transform.position.y, _z);
 
-        retard.MovePosition(_anchorIntended);
+     rb.MovePosition(_destination);
     }
 
     // Update is called once per frame
