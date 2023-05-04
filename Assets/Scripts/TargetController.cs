@@ -21,9 +21,9 @@ public class TargetController : MonoBehaviour
     {
         float _zDifference = _targetHolder.position.z - topHinge.transform.position.z;
         float _z = topHinge.transform.position.z + (_zDifference * _amplification);
-        _destination = new Vector3(topHinge.transform.position.x, topHinge.transform.position.y, _z);
+        Vector3 _destination = new Vector3(topHinge.transform.position.x, topHinge.transform.position.y, _z);
 
-     rb.MovePosition(_destination);
+        rb.MovePosition(_destination);
     }
 
     // Update is called once per frame
