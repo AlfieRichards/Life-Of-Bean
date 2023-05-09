@@ -100,16 +100,8 @@ public class AudioManager : MonoBehaviour
             Debug.LogWarning("Sound: " + name + " not found!");
             return;
         }
+        Debug.Log("Playing sound");
         s.source.Play();
-    }
-
-    public void StopAll()
-    {
-        Component[] sources;
-        sources = GetComponentsInChildren<AudioSource>();
-        foreach(AudioSource tSource in sources){
-            tSource.Stop();
-        }
     }
 
     public void PlayMusic(string name)
@@ -121,8 +113,43 @@ public class AudioManager : MonoBehaviour
             Debug.LogWarning("Music: " + name + " not found!");
             return;
         }
-        Debug.Log("Playing shit");
+        Debug.Log("Playing music");
         m.source.Play();
+    }
+
+    public void StopAll()
+    {
+        Component[] sources;
+        sources = GetComponentsInChildren<AudioSource>();
+        foreach(AudioSource tSource in sources){
+            tSource.Stop();
+        }
+    }
+
+    public void StopSpecific(string name)
+    {
+        Sound m = Array.Find(music, sound => sound.name == name);
+        //custom error message when cant find clip name
+        if (m == null)
+        {
+            Sound s = Array.Find(sounds, sound => sound.name == name);
+            //custom error message when cant find clip name
+            if (s == null)
+            {
+                Debug.LogWarning("Sound: " + name + " not found!");
+                return;
+            }
+            else
+            {
+                Debug.Log("Stopping sound");
+                s.source.Stop();
+            }
+        }
+        else
+        {
+            Debug.Log("Stopping music");
+            m.source.Stop();
+        }
     }
 
     //to play from anywhere do
