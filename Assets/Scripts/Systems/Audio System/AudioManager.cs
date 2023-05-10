@@ -44,6 +44,8 @@ public class AudioManager : MonoBehaviour
             s.source.volume = s.volume;
             s.source.pitch = s.pitch;
             s.source.loop = s.loop;
+            s.source.dopplerLevel = s.dopplerLevel;
+            s.source.spatialBlend = s.spatialBlend;
             s.source.outputAudioMixerGroup = soundMixer;
         }
 
@@ -55,22 +57,25 @@ public class AudioManager : MonoBehaviour
             m.source.volume = m.volume;
             m.source.pitch = m.pitch;
             m.source.loop = m.loop;
+            m.source.dopplerLevel = m.dopplerLevel;
+            m.source.spatialBlend = m.spatialBlend;
             m.source.outputAudioMixerGroup = musicMixer;
         }
         //this could be used to play music when a scene loads
-        //PlayMusic("BGM"); this will play the music sound with the name BGM
+        PlayMusic("BGM"); //this will play the music sound with the name BGM
         //SceneMusic(); alter this function to play different background music depending on scene
     }
 
 
     void Update()
     {
-        if(SceneManager.GetActiveScene() != currentScene)
-        {
-            SceneMusic();
-        }
+        // if(SceneManager.GetActiveScene() != currentScene)
+        // {
+        //     SceneMusic();
+        // }
     }
 
+    //DANGER THIS WILL STOP ALL BUT ONESHOT SOUNDS
     public void SceneMusic()
     {
         StopAll();
@@ -89,6 +94,18 @@ public class AudioManager : MonoBehaviour
 
     //this could be used to play music when a scene loads
 
+    //plays oneshot sound. Use for overlapping audio such as gunshots
+    public void PlayOneShotSound(string name)
+    {
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+        //custom error message when cant find clip name
+        if (s == null)
+        {
+            Debug.LogWarning("Sound: " + name + " not found!");
+            return;
+        }
+        s.source.PlayOneShot(s.clip, s.volume);
+    }
 
     //plays sound
     public void PlaySound(string name)

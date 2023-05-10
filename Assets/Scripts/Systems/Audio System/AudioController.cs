@@ -40,11 +40,13 @@ public class AudioController : MonoBehaviour
             m.source.volume = m.volume;
             m.source.pitch = m.pitch;
             m.source.loop = m.loop;
+            m.source.dopplerLevel = m.dopplerLevel;
+            m.source.spatialBlend = m.spatialBlend;
             m.source.outputAudioMixerGroup = musicMixer;
         }
 
         //this could be used to play music when a scene loads
-        //PlayMusic("BGM"); this will play the music sound with the name BGM
+        //PlayMusic("BGM"); //this will play the music sound with the name BGM
         //SceneMusic(); alter this function to play different background music depending on scene
         
         //use these for individual sounds
@@ -54,12 +56,13 @@ public class AudioController : MonoBehaviour
 
     void Update()
     {
-        if(SceneManager.GetActiveScene() != currentScene)
-        {
-            SceneMusic();
-        }
+        // if(SceneManager.GetActiveScene() != currentScene)
+        // {
+        //     SceneMusic();
+        // }
     }
 
+    //DANGER THIS WILL STOP ALL BUT ONESHOT SOUNDS
     public void SceneMusic()
     {
         StopAll();

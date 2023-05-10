@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 5689.9883, g: 6919.9453, b: 9325.367, a: 1}
+  m_IndirectSpecularColor: {r: 5256.1836, g: 6311.9688, b: 8331.367, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3370,6 +3370,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6378361265212908933, guid: 377a171f3d9f55e4d90f951a4e43df6e,
+        type: 3}
+      propertyPath: music.Array.data[0].volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6378361265212908933, guid: 377a171f3d9f55e4d90f951a4e43df6e,
+        type: 3}
+      propertyPath: music.Array.data[0].dopplerLevel
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6378361265212908933, guid: 377a171f3d9f55e4d90f951a4e43df6e,
+        type: 3}
+      propertyPath: music.Array.data[0].spatialBlend
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6378361265212909050, guid: 377a171f3d9f55e4d90f951a4e43df6e,
         type: 3}
@@ -7334,7 +7349,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _targetHolder: {fileID: 1374791045}
   _targetAnchor: {fileID: 1672633220}
-  twat: {fileID: 1672633218}
+  topHinge: {fileID: 1672633218}
 --- !u!1 &1245199552
 GameObject:
   m_ObjectHideFlags: 0
@@ -7385,7 +7400,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _targetHolder: {fileID: 1026659496}
   _targetAnchor: {fileID: 692002283}
-  twat: {fileID: 0}
+  topHinge: {fileID: 0}
 --- !u!1 &1252125340
 GameObject:
   m_ObjectHideFlags: 0
@@ -8421,11 +8436,21 @@ MonoBehaviour:
     outputAudioMixerGroup: {fileID: 0}
     volume: 1
     pitch: 1
-    spatialBlend: 0.5
+    spatialBlend: 1
     dopplerLevel: 0
     loop: 0
     source: {fileID: 0}
-  music: []
+  music:
+  - name: BGM
+    clip: {fileID: 8300000, guid: 5f76709f276772b419fde8dfee0cd47c, type: 3}
+    outputAudioMixerGroup: {fileID: -3020269314422819713, guid: 20e3b4152ed5ec74a955bd5eab71c050,
+      type: 2}
+    volume: 1
+    pitch: 1
+    spatialBlend: 1
+    dopplerLevel: 0
+    loop: 0
+    source: {fileID: 0}
   musicMixer: {fileID: -3020269314422819713, guid: 20e3b4152ed5ec74a955bd5eab71c050,
     type: 2}
   soundMixer: {fileID: -4387434332411123013, guid: 20e3b4152ed5ec74a955bd5eab71c050,
@@ -11121,7 +11146,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _targetHolder: {fileID: 161470749}
   _targetAnchor: {fileID: 1986319008}
-  twat: {fileID: 0}
+  topHinge: {fileID: 0}
 --- !u!1 &1525987955
 GameObject:
   m_ObjectHideFlags: 0
