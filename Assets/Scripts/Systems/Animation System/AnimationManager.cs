@@ -40,6 +40,21 @@ public class AnimationManager : MonoBehaviour
     }
 
     //plays sound use for non overlapping audio like grenades or footsteps
+    public void PlayNoSkip(string name)
+    {
+        AnimationObject a = Array.Find(animations, animation => animation.name == name);
+        //custom error message when cant find clip name
+        if (a == null)
+        {
+            Debug.LogWarning("Animation: " + name + " not found!");
+            return;
+        }
+
+        //animSource.CrossFadeQueued(a.name, fadeLength, QueueMode.PlayNow);
+        animSource.PlayQueued(a.name, QueueMode.CompleteOthers);
+    }
+
+    //plays sound use for non overlapping audio like grenades or footsteps
     public void PlayAnim(string name)
     {
         AnimationObject a = Array.Find(animations, animation => animation.name == name);
