@@ -126,7 +126,7 @@ public class VideoSettings : MonoBehaviour
             }
             case "Unlimited":
             {
-                QualitySettings.vSyncCount = 0;
+                QualitySettings.vSyncCount = 1;
                 Application.targetFrameRate = -1;
                 PlayerPrefs.SetInt("FPSLevel", 4);
                 break;
@@ -265,7 +265,7 @@ public class VideoSettings : MonoBehaviour
 
             case 4:
             {
-                QualitySettings.vSyncCount = 0;
+                QualitySettings.vSyncCount = 1;
                 Application.targetFrameRate = -1;
                 FPSOptions[3].GetComponent<Toggle>().isOn = true;
                 break;

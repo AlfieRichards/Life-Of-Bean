@@ -1,6 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
+using UnityEngine.UI;
+using System;
+using UnityEngine.SceneManagement;
 
 public class mainMenuController : MonoBehaviour
 {
@@ -27,52 +31,83 @@ public class mainMenuController : MonoBehaviour
 
     bool menusVisible = false;
     public CanvasGroup canvas;
+    public CanvasGroup canvas2;
+
+    //0 is video, 1 is audio
+    int lastOpen;
 
     public  float lerp = 0f, duration = 2f;
+
+    public AudioMixer masterMixer;
+    public Slider master, music, effects;
 
     
     
     // Start is called before the first frame update
     void Start()
     {
-        
+        LoasPrefs();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(menusVisible)
+        if(!menusVisible)
+        {
+            if(canvas.alpha > 0 || canvas2.alpha > 0)
+            {
+                if(lastOpen == 0)
+                {
+                    lerp -= Time.deltaTime / duration;
+                    canvas.alpha = lerp;                   
+                }
+                if(lastOpen == 1)
+                {
+                    lerp -= Time.deltaTime / duration;
+                    canvas2.alpha = lerp;                 
+                }
+            }
+        }
+        if(menusVisible && vidOpen && !audOpen)
         {
             if(canvas.alpha < 1)
             {
                 lerp += Time.deltaTime / duration;
-                canvas.alpha = (int)Mathf.Lerp (canvas.alpha, 1f, lerp);
-                //canvas.alpha += 0.05f;
+                canvas.alpha = lerp;
             }
         }
-        else
+        if(menusVisible && audOpen && !vidOpen)
         {
-            if(canvas.alpha > 0)
+            if(canvas2.alpha < 1)
             {
-                lerp -= Time.deltaTime / duration;
-                canvas.alpha = (int)Mathf.Lerp (canvas.alpha, 0f, lerp * -1.5f);
-                //canvas.alpha -= 0.05f;
+                lerp += Time.deltaTime / duration;
+                canvas2.alpha = lerp;
             }
         }
-
-        canvas.alpha = lerp;
 
         if(Input.GetKeyDown(KeyCode.Return))
         {
+
+            if(index == 0 && !subMenuBool)
+            {
+                PlayGame();
+            }
+
             if(index == 1 && !subMenuBool)
             {
                 subMenuBool = true;
                 index = 0;
                 lerp = 0;
                 canvas.alpha = 0;
+                canvas2.alpha = 0;
                 
                 mainMenu.SetActive(false);
                 subMenu.SetActive(true);
+            }
+
+            if(index == 2 && !subMenuBool)
+            {
+                QuitGame();
             }
 
             if(index == 0 && subMenuBool)
@@ -90,6 +125,7 @@ public class mainMenuController : MonoBehaviour
                 {
                     if(audOpen && !vidOpen)
                     {
+                        lastOpen = 1;
                         menusVisible = false;
                         GetComponent<AnimationManager>().PlayNoSkip("AudioClose");
                         GetComponent<AnimationManager>().PlayNoSkip("VideoOpen");
@@ -118,6 +154,7 @@ public class mainMenuController : MonoBehaviour
                 {
                     if(!audOpen && vidOpen)
                     {
+                        lastOpen = 0;
                         menusVisible = false;
                         GetComponent<AnimationManager>().PlayNoSkip("VideoClose");
                         GetComponent<AnimationManager>().PlayNoSkip("AudioOpen");
@@ -218,10 +255,118 @@ public class mainMenuController : MonoBehaviour
 
     void MenusVisible()
     {
-        if(vidOpen)
+        if(vidOpen || audOpen)
         {
+            if(vidOpen){videoSettings.SetActive(true); audioSettings.SetActive(false);}
+            if(audOpen){videoSettings.SetActive(false); audioSettings.SetActive(true);}
             lerp = 0;
             menusVisible = true;
         }
+    }
+
+    void LoasPrefs()
+    {
+        master.value = PlayerPrefs.GetFloat("MasterVolume");
+        music.value = PlayerPrefs.GetFloat("BgmVolume");
+        effects.value = PlayerPrefs.GetFloat("SfxVolume");
+
+
+        switch (PlayerPrefs.GetInt("FPSLevel"))
+        {
+            case 0:
+            {
+                QualitySettings.vSyncCount = 0;
+                Application.targetFrameRate = 30;
+                break;
+            }
+
+            case 1:
+            {
+                QualitySettings.vSyncCount = 0;
+                Application.targetFrameRate = 60;
+                break;
+            }
+
+            case 2:
+            {
+                QualitySettings.vSyncCount = 0;
+                Application.targetFrameRate = 90;
+                break;
+            }
+
+            case 3:
+            {
+                QualitySettings.vSyncCount = 0;
+                Application.targetFrameRate = 120;
+                break;
+            }
+
+            case 4:
+            {
+                QualitySettings.vSyncCount = 0;
+                Application.targetFrameRate = -1;
+                break;
+            }
+            default:
+                break;
+        }
+
+        switch (PlayerPrefs.GetInt("QualityLevel"))
+        {
+            case 0:
+            {
+                QualitySettings.SetQualityLevel(0);
+                break;
+            }
+
+            case 1:
+            {
+                QualitySettings.SetQualityLevel(1);
+                break;
+            }
+
+            case 2:
+            {
+                QualitySettings.SetQualityLevel(2);
+                break;
+            }
+
+            case 3:
+            {
+                QualitySettings.SetQualityLevel(3);
+                break;
+            }
+            default:
+                break;
+        }
+
+        switch (PlayerPrefs.GetInt("FullScreen"))
+        {
+            case 0:
+            {
+                Screen.fullScreen = true;
+                break;
+            }
+
+            case 1:
+            {
+                Screen.fullScreen = false;
+                break;
+            }
+            default:
+                break;
+        }
+    }
+
+    public void PlayGame()
+    {
+        Debug.Log("PLAY GAME!");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    public void QuitGame()
+    {
+        Debug.Log("QUIT GAME!");
+        Application.Quit();
     }
 }
