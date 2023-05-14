@@ -4,57 +4,33 @@ using System.ComponentModel.Design;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class SettingsMenu : MonoBehaviour {
 
     public AudioMixer masterMixer;
 
-    public TMPro.TMP_Dropdown resolutionDropdown;
-
     public TMPro.TMP_Dropdown QualityDropdown;
 
     public Toggle fullscreenToggle;
 
-    public int currentResolutionIndex;
+    public Slider master, music, effects, sensitivity;
 
-    public Slider master, music, effects;
-
-    Resolution[] resolutions;
+    public playerMovement player;
 
     void Start ()
     {
         //Loads all player prefs except resolution
         LoadPrefs();
-
-        resolutions = Screen.resolutions;
-
-        resolutionDropdown.ClearOptions();
-
-        List<string> options = new List<string>();
-
-        for (int i = 0; i < resolutions.Length; i++)
-        {
-            string option = resolutions[i].width + " x " + resolutions[i].height;
-            if(!options.Contains(option)){options.Add(option);}
-
-            if(resolutions[i].width == Screen.currentResolution.width &&
-                resolutions[i].height == Screen.currentResolution.height)
-            {
-                currentResolutionIndex = i;
-            }
-        }
-
-        resolutionDropdown.AddOptions(options);
-        resolutionDropdown.value = PlayerPrefs.GetInt("ResolutionIndex");
-        resolutionDropdown.RefreshShownValue();
     }
 
-    public void SetResolution(int resolutionIndex)
+    public void SetSensitivity (float sens)
     {
-        Resolution resolution = resolutions[resolutionIndex];
-        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
-        PlayerPrefs.SetInt("ResolutionIndex", resolutionIndex);
+        player.mouseSensitivity = sens;
+        PlayerPrefs.SetFloat("Sensitivity", sens);
+        Debug.Log(sens);
     }
+
 
 
     public void SetEffectsVolume (float volume)
@@ -121,7 +97,20 @@ public class SettingsMenu : MonoBehaviour {
         master.value = PlayerPrefs.GetFloat("MasterVolume");
         music.value = PlayerPrefs.GetFloat("BgmVolume");
         effects.value = PlayerPrefs.GetFloat("SfxVolume");
+        sensitivity.value = PlayerPrefs.GetFloat("Sensitivity");
+        player.mouseSensitivity = sensitivity.value;
         CheckFullscreen(PlayerPrefs.GetInt("FullscreenBool"));
     }
 
+    public void MainMenu()
+    {
+        Debug.Log("Main Menu!");
+        SceneManager.LoadScene(0);
+    }
+
+    public void QuitGame()
+    {
+        Debug.Log("QUIT GAME!");
+        Application.Quit();
+    }
 }

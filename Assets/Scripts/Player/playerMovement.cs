@@ -52,6 +52,7 @@ public class playerMovement : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody>();
         Cursor.lockState = CursorLockMode.Locked;
+        mouseSensitivity = PlayerPrefs.GetFloat("Sensitivity");
     }
 
     void Update()

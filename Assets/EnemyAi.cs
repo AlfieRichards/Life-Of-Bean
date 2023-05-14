@@ -5,24 +5,27 @@ using UnityEngine.AI;
 
 public class EnemyAi : MonoBehaviour
 {
-    private Transform lastSeen;
-    private NavMeshAgent agent;
+    private NavMeshAgent _agent;
 
-    public float attackRange = 5f;
-    public float decisionRange = 1f;
+    [SerializeField]private float _attackRange = 5f;
+    [SerializeField]private float _decisionRange = 1f;
 
-    public float decisionTime;
-    public float forgetTime = 8;
+    [SerializeField]private float _decisionTime = 2f;
+    [SerializeField]private float _forgetTime = 8f;
 
-    bool lostSight = true;
-    bool newDest = true;
+    [SerializeField]private float _patrolRange = 10f; //radius of sphere
+
+    [SerializeField]private Transform _centrePoint; //centre of the area the _agent wants to move around in
+
+    public int health = 100;
+    public LayerMask enemy;
+
+    private bool _lostSight = true;
+    private bool _newDest = true;
+    private Transform _lastSeen;
 
     //0 patrolling, 1 chasing, 2 attacking, 3 fleeing
-    int state = 0;
-
-    public float patrolRange; //radius of sphere
-
-    public Transform centrePoint; //centre of the area the agent wants to move around in
+    private int _state = 0;
 
 
 
@@ -30,23 +33,15 @@ public class EnemyAi : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        agent = GetComponent<NavMeshAgent>();
+        _agent = GetComponent<NavMeshAgent>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(state);
-        // if(lastSeen == null)
-        // {
-        //     state = 0;
-        // }
-        // else
-        // {
-        //     state = 1;
-        // }
+        Debug.Log(_state);
 
-        switch (state)
+        switch (_state)
         {
             case 0:
             {
@@ -66,48 +61,61 @@ public class EnemyAi : MonoBehaviour
             default:
                 break;
         }
+
+        if(health <= 0)
+        {
+            Die();
+        }
+    }
+
+    void Die()
+    {
+        //death anim
+        //wait a bit
+        //destroy
+        Destroy(gameObject);
     }
 
     void Patrolling()
     {
-        if(newDest)
+        if(_newDest)
         {
             Vector3 point;
-            if (RandomPoint(centrePoint.position, patrolRange, out point)) //pass in our centre point and radius of area
+            if (RandomPoint(_centrePoint.position, _patrolRange, out point)) //pass in our centre point and radius of area
             {
                 Debug.DrawRay(point, Vector3.up, Color.blue, 1.0f); //so you can see with gizmos
-                agent.SetDestination(point);
-                newDest = false;
+                _agent.SetDestination(point);
+                _newDest = false;
 
-                Invoke("DestReset", decisionTime);
+                Invoke("DestReset", _decisionTime);
             }
         }
     }
 
     void DestReset()
     {
-        newDest = true;
+        _newDest = true;
     }
 
     void Chasing()
     {
-        if(lostSight)
+        if(_lostSight)
         {
             StartCoroutine(StartWait());
 
-            transform.LookAt(lastSeen.position);
-            agent.SetDestination(lastSeen.position);
+            transform.LookAt(_lastSeen.position);
+            _agent.SetDestination(_lastSeen.position);
         }
         else
         {
-            transform.LookAt(lastSeen.position);
-            agent.SetDestination(lastSeen.position);
+            transform.LookAt(_lastSeen.position);
+            _agent.SetDestination(_lastSeen.position);
 
-            float dist = Vector3.Distance(lastSeen.position, transform.position);
+            float dist = Vector3.Distance(_lastSeen.position, transform.position);
 
-            if(dist < attackRange)
+            if(dist < _attackRange)
             {
-                state = 2;
+                _state = 2;
             }
         }
     }
@@ -115,7 +123,7 @@ public class EnemyAi : MonoBehaviour
     void Attacking()
     {
         Debug.Log("attacking");
-        state = 1;
+        _state = 1;
     }
 
 
@@ -123,19 +131,22 @@ public class EnemyAi : MonoBehaviour
     {
         if(other.gameObject.tag == "Player")
         {
-            lostSight = false;
-            lastSeen = other.gameObject.transform;
-
-            if(state != 2)
+            if(!Physics.Linecast(transform.position, other.transform.position, enemy))
             {
-                state = 1;
+                _lostSight = false;
+                _lastSeen = other.gameObject.transform;
+
+                if(_state != 2)
+                {
+                    _state = 1;
+                }  
             }
         }
     }
 
     void OnTriggerExit(Collider other)
     {
-        lostSight = true;
+        _lostSight = true;
     }
 
     bool RandomPoint(Vector3 center, float range, out Vector3 result)
@@ -158,15 +169,15 @@ public class EnemyAi : MonoBehaviour
 
     IEnumerator StartWait()
     {
-        yield return new WaitForSeconds(forgetTime);
-        if(lostSight)
+        yield return new WaitForSeconds(_forgetTime);
+        if(_lostSight)
         {
-            state = 0;
-            lastSeen = null;
+            _state = 0;
+            _lastSeen = null;
         }
         else
         {
-            state = 1;
+            _state = 1;
         }
     }
 }

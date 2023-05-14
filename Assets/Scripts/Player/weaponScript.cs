@@ -87,6 +87,8 @@ public class weaponScript : MonoBehaviour
 
     [HideInInspector] public AudioController audioController;
 
+    bool dryFired = false;
+
 
     void Start()
     {
@@ -210,6 +212,7 @@ public class weaponScript : MonoBehaviour
 
                 if(!_aiming){Invoke("Reload", _reloadTime);}
                 else{Invoke("Reload", _adsReloadTime); _tempAiming = true;}
+                dryFired = false;
             }
             else
             {
@@ -313,10 +316,15 @@ public class weaponScript : MonoBehaviour
     }
 
     void FireWeapon()
-    {
+    {   
         //if mag empty or shot delay ongoing dont shoot
         if(_ammoCapacity < 1 || !_canFire || _reloading)
         {
+            if(_ammoCapacity < 1 && _canFire && !_reloading && !dryFired)
+            {
+                AnimHandler("dryfire");
+                dryFired = true;
+            }
             return;
         }
 
@@ -354,6 +362,10 @@ public class weaponScript : MonoBehaviour
                         GameObject hole = Instantiate(_bulletHole, weaponHit.point, Quaternion.FromToRotation(transform.up, weaponHit.normal));
                         hole.transform.parent = weaponHit.transform;
                     }
+                    if(weaponHit.transform.tag == "Enemy")
+                    {
+                        weaponHit.transform.gameObject.GetComponent<EnemyAi>().health -= _damage;
+                    }
                     //everything but the targets
                     else
                     {
@@ -373,6 +385,10 @@ public class weaponScript : MonoBehaviour
                 {
                     GameObject hole = Instantiate(_bulletHole, cameraHit.point, Quaternion.FromToRotation(transform.up, cameraHit.normal));
                     hole.transform.parent = cameraHit.transform;
+                }
+                if(cameraHit.transform.tag == "Enemy")
+                {
+                    cameraHit.transform.gameObject.GetComponent<EnemyAi>().health -= _damage;
                 }
                 //everything but the targets
                 else
@@ -416,7 +432,7 @@ public class weaponScript : MonoBehaviour
                 animController.PlayAnim("fire");
                 break;
             case "reload":
-                //audioController.PlayOneShotSound("reload");
+                audioController.PlayOneShotSound("reload");
                 animController.PlayAnim("reload");
                 break;
             case "reload no spare":
@@ -484,7 +500,7 @@ public class weaponScript : MonoBehaviour
                 animController.PlayAnim("inspect");
                 break;
             case "dryfire":
-                // audioController.PlayOneShotSound("dryfire");
+                audioController.PlayOneShotSound("dryfire");
                 // animController.PlayAnim("dryfire");
                 break;                       
             default:

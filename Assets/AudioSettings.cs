@@ -15,30 +15,29 @@ public class AudioSettings : MonoBehaviour
         LoadPrefs();
     }
 
-    public void SetEffectsVolume (float volume)
+    public void SetEffectsVolume ()
     {
-        masterMixer.SetFloat("SfxVolume", volume);
-        PlayerPrefs.SetFloat("SfxVolume", volume);
-        Debug.Log(volume);
+        masterMixer.SetFloat("SfxVolume", effects.value);
+        PlayerPrefs.SetFloat("SfxVolume", effects.value);
+        Debug.Log(effects.value);
     }
 
-    public void SetMusicVolume (float volume)
+    public void SetMusicVolume ()
     {
-        masterMixer.SetFloat("BgmVolume", volume);
-        PlayerPrefs.SetFloat("BgmVolume", volume);
-        Debug.Log(volume);
+        masterMixer.SetFloat("BgmVolume", music.value);
+        PlayerPrefs.SetFloat("BgmVolume", music.value);
+        Debug.Log(music.value);
     }
 
-    public void SetMasterVolume (float volume)
+    public void SetMasterVolume ()
     {
-        masterMixer.SetFloat("MasterVolume", volume);
-        PlayerPrefs.SetFloat("MasterVolume", volume);
-        Debug.Log(volume);
+        masterMixer.SetFloat("MasterVolume", master.value);
+        PlayerPrefs.SetFloat("MasterVolume", master.value);
+        Debug.Log(master.value);
     }
 
     void LoadPrefs()
     {
-        Debug.Log("FUCK");
         master.value = PlayerPrefs.GetFloat("MasterVolume");
         music.value = PlayerPrefs.GetFloat("BgmVolume");
         effects.value = PlayerPrefs.GetFloat("SfxVolume");
