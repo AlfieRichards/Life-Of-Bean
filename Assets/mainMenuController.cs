@@ -23,6 +23,8 @@ public class mainMenuController : MonoBehaviour
     public GameObject videoSettings;
     public GameObject audioSettings;
 
+    public AudioController audioManager;
+
     int index = 0;
 
     bool subMenuBool = false;
@@ -46,7 +48,9 @@ public class mainMenuController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        LoasPrefs();
+        LoadPrefs();
+        audioManager.PlaySound("startup");
+        audioManager.PlaySound("pcLoop");
     }
 
     // Update is called once per frame
@@ -87,6 +91,7 @@ public class mainMenuController : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Return))
         {
+            audioManager.PlayOneShotSound("keypress");
 
             if(index == 0 && !subMenuBool)
             {
@@ -101,6 +106,7 @@ public class mainMenuController : MonoBehaviour
                 canvas.alpha = 0;
                 canvas2.alpha = 0;
                 
+                audioManager.PlayOneShotSound("loading");
                 mainMenu.SetActive(false);
                 subMenu.SetActive(true);
             }
@@ -127,8 +133,10 @@ public class mainMenuController : MonoBehaviour
                     {
                         lastOpen = 1;
                         menusVisible = false;
+                        audioManager.PlayOneShotSound("PaperOpen");
                         GetComponent<AnimationManager>().PlayNoSkip("AudioClose");
                         GetComponent<AnimationManager>().PlayNoSkip("VideoOpen");
+                        audioManager.PlayOneShotSound("PaperOpen");
                         //GetComponent<AnimationManager>().PlayNoSkip("FadeIn");
                     }
                     audOpen = false;
@@ -156,8 +164,10 @@ public class mainMenuController : MonoBehaviour
                     {
                         lastOpen = 0;
                         menusVisible = false;
+                        audioManager.PlayOneShotSound("PaperOpen");
                         GetComponent<AnimationManager>().PlayNoSkip("VideoClose");
                         GetComponent<AnimationManager>().PlayNoSkip("AudioOpen");
+                        audioManager.PlayOneShotSound("PaperOpen");
                     }
                     vidOpen = false;
                     audOpen = true;
@@ -170,8 +180,8 @@ public class mainMenuController : MonoBehaviour
             if(index == 2 && subMenuBool)
             {
                 menusVisible = false;
-                if(audOpen){GetComponent<AnimationManager>().PlayNoSkip("AudioClose");}
-                if(vidOpen){GetComponent<AnimationManager>().PlayNoSkip("VideoClose");}
+                if(audOpen){GetComponent<AnimationManager>().PlayNoSkip("AudioClose"); audioManager.PlayOneShotSound("PaperOpen");}
+                if(vidOpen){GetComponent<AnimationManager>().PlayNoSkip("VideoClose"); audioManager.PlayOneShotSound("PaperOpen");}
 
                 subMenuBool = false;
                 index = 0;
@@ -183,11 +193,13 @@ public class mainMenuController : MonoBehaviour
 
                 mainMenu.SetActive(true);
                 subMenu.SetActive(false);
+                audioManager.PlayOneShotSound("loading");
             }
         }
 
         if(Input.GetKeyDown("up"))
         {
+            audioManager.PlayOneShotSound("keypress");
             index--;
             if(index < 0)
             {
@@ -197,6 +209,7 @@ public class mainMenuController : MonoBehaviour
 
         if(Input.GetKeyDown("down"))
         {
+            audioManager.PlayOneShotSound("keypress");
             index++;
             if(index > 2)
             {
@@ -264,7 +277,7 @@ public class mainMenuController : MonoBehaviour
         }
     }
 
-    void LoasPrefs()
+    void LoadPrefs()
     {
         master.value = PlayerPrefs.GetFloat("MasterVolume");
         music.value = PlayerPrefs.GetFloat("BgmVolume");

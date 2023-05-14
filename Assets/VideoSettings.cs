@@ -10,6 +10,8 @@ public class VideoSettings : MonoBehaviour
     public List <GameObject> FullScreenOptions = new List <GameObject>();
     bool delay = false;
 
+    public AudioController audioManager;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +26,7 @@ public class VideoSettings : MonoBehaviour
 
     public void SetQuality (int qualityIndex)
     {
+        audioManager.PlayOneShotSound("PaperCircle");
         if(delay){return;}
         delay = true;
 
@@ -78,6 +81,7 @@ public class VideoSettings : MonoBehaviour
 
     public void SetFPS (int fpsIndex)
     {
+        audioManager.PlayOneShotSound("PaperCircle");
         if(delay){return;}
         delay = true;
 
@@ -142,6 +146,7 @@ public class VideoSettings : MonoBehaviour
 
     public void SetFullscreen (int screenIndex)
     {
+        audioManager.PlayOneShotSound("PaperCircle");
         if(delay){return;}
         delay = true;
 
