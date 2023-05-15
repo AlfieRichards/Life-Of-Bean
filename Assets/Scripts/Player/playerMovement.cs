@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class playerMovement : MonoBehaviour
 {
@@ -46,6 +47,19 @@ public class playerMovement : MonoBehaviour
     [HideInInspector] private float _deltaTime;
     [HideInInspector] public float _fps;
 
+    //health
+    public float _health;
+    float _prevHealth;
+    public float _lerp = 0f, _duration = 2f;
+    public float regenMulti = 1f;
+    public Material _hurtFlash;
+    public Material _healthOverlay;
+    private Color red = Color.red;
+    private Color healthOverlay = Color.red;
+    public float redLimit = 1;
+    private bool _healing = false;
+    private bool _flash = false;
+    private float _TimeSinceDamage = 0f;
     
     // Start is called before the first frame update
     void Start()
@@ -53,6 +67,9 @@ public class playerMovement : MonoBehaviour
         _rb = GetComponent<Rigidbody>();
         Cursor.lockState = CursorLockMode.Locked;
         mouseSensitivity = PlayerPrefs.GetFloat("Sensitivity");
+        _prevHealth = _health;
+        red.a = 0f;
+        healthOverlay.a = 0f;
     }
 
     void Update()
@@ -71,6 +88,7 @@ public class playerMovement : MonoBehaviour
         CheckInput();
         RigidbodyMovement();
         DebugCursor();
+        HealthUpdate();
 
         _location = transform.position;
     }
@@ -255,5 +273,78 @@ public class playerMovement : MonoBehaviour
     void ResetDebugCursor()
     {
         _recentDebugOption = false;
+    }
+
+    void HealthUpdate()
+    {
+        if(_health <= 0)
+        {
+            //idk die or something
+        }
+        if(_health < _prevHealth)
+        {
+            //hurt flash
+            _flash = true;
+            Invoke("ResetFlash", 0.2f);
+
+            _TimeSinceDamage = 0f;
+            _healing = false;
+        }
+        else
+        {
+            if(!_healing)
+            {
+                _TimeSinceDamage += Time.deltaTime;
+                if(_TimeSinceDamage >= 5f)
+                {
+                    _healing = true;
+                }
+            }
+            else
+            {
+                _health += Time.deltaTime * regenMulti;
+                if(_health >= 100f)
+                {
+                    _health = 100f;
+                    _healing = false;
+                    _TimeSinceDamage = 0f;
+                }
+            }
+        }
+        //_hurtFlash.color.a
+        // _lerp -= Time.deltaTime / _duration;
+        //             red.a = _lerp;
+
+        //if flash make go red for length of flash reset
+
+        //1 is red, 0 is not
+        if(_flash)
+        {
+            if(red.a < redLimit)
+            {
+                _lerp += Time.deltaTime / _duration;
+                red.a = _lerp;
+            }
+        }
+        else
+        {
+            if(red.a > 0)
+            {
+                _lerp -= Time.deltaTime / _duration;
+                red.a = _lerp;
+            }
+        }
+
+        healthOverlay.a = 1 - (_health/100);
+
+        _healthOverlay.color = healthOverlay;
+        _hurtFlash.color = red;
+
+        _prevHealth = _health;
+    }
+
+    void ResetFlash()
+    {
+        _flash = false;
     }
 }

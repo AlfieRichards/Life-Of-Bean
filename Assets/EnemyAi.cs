@@ -18,11 +18,21 @@ public class EnemyAi : MonoBehaviour
     [SerializeField]private Transform _centrePoint; //centre of the area the _agent wants to move around in
 
     public int health = 100;
+    public int damage = 10;
+    public float shotDelay = 5;
     public LayerMask enemy;
+    public AnimationManager anim;
 
     private bool _lostSight = true;
     private bool _newDest = true;
+    bool canAttack = true;
     private Transform _lastSeen;
+
+    private bool walkAnimPlaying = false;
+    private bool shootAnimPlaying = false;
+    private bool idleAnimPlaying = false;
+
+    public playerMovement player;
 
     //0 patrolling, 1 chasing, 2 attacking, 3 fleeing
     private int _state = 0;
@@ -60,6 +70,30 @@ public class EnemyAi : MonoBehaviour
             }
             default:
                 break;
+        }
+
+        //idle animation
+        if(!idleAnimPlaying && _agent.velocity == new Vector3(0,0,0))
+        {
+            AnimHandler("idle");
+            idleAnimPlaying = true;
+        }
+
+        if(!walkAnimPlaying && _agent.velocity != new Vector3(0,0,0))
+        {
+            AnimHandler("walk");
+            walkAnimPlaying = true;
+        }
+
+        if(_state == 2 && !shootAnimPlaying)
+        {
+            AnimHandler("shoot");
+        }
+
+        if(!anim.animSource.isPlaying)
+        {
+            walkAnimPlaying = false;
+            idleAnimPlaying = false;
         }
 
         if(health <= 0)
@@ -103,12 +137,12 @@ public class EnemyAi : MonoBehaviour
         {
             StartCoroutine(StartWait());
 
-            transform.LookAt(_lastSeen.position);
+            //transform.LookAt(_lastSeen.position);
             _agent.SetDestination(_lastSeen.position);
         }
         else
         {
-            transform.LookAt(_lastSeen.position);
+            //transform.LookAt(_lastSeen.position);
             _agent.SetDestination(_lastSeen.position);
 
             float dist = Vector3.Distance(_lastSeen.position, transform.position);
@@ -123,11 +157,39 @@ public class EnemyAi : MonoBehaviour
     void Attacking()
     {
         Debug.Log("attacking");
+        if(canAttack)
+        {
+            player._health -= damage;
+            canAttack = false;
+            Invoke("ResetAttack", shotDelay);
+        }
         _state = 1;
+    }
+
+    void ResetAttack()
+    {
+        canAttack = true;
     }
 
 
     void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "Player")
+        {
+            if(!Physics.Linecast(transform.position, other.transform.position, enemy))
+            {
+                _lostSight = false;
+                _lastSeen = other.gameObject.transform;
+
+                if(_state != 2)
+                {
+                    _state = 1;
+                }  
+            }
+        }
+    }
+
+    void OnTriggerStay(Collider other)
     {
         if(other.gameObject.tag == "Player")
         {
@@ -178,6 +240,31 @@ public class EnemyAi : MonoBehaviour
         else
         {
             _state = 1;
+        }
+    }
+
+    void AnimHandler(string animReq)
+    {
+        switch (animReq)
+        {
+            case "idle":
+                //audioController.PlayOneShotSound("equip");
+                anim.PlayAnim("Idle");
+                break;
+
+            case "walk":
+                //audioController.PlayOneShotSound("equip");
+                anim.PlayAnim("Walk");
+                break;
+
+            case "shoot":
+                //audioController.PlayOneShotSound("equip");
+                anim.PlayAnim("Shoot");
+                break;
+            default:
+                // If the input string does not match any animation name, print an error message
+                Debug.LogError("Animation not found: " + animReq);
+                break;
         }
     }
 }
