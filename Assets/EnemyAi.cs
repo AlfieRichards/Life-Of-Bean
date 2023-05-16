@@ -159,21 +159,24 @@ public class EnemyAi : MonoBehaviour
 
     void Attacking()
     {
-        RaycastHit info;
-        if(Physics.Linecast(transform.position, playerObj.transform.position, out info, enemy))
+        if(Random.Range(0, 3) == 2)
         {
-            if(info.collider.gameObject.name == "Player")
+            RaycastHit info;
+            if(Physics.Linecast(transform.position, playerObj.transform.position, out info, enemy))
             {
-                if(canAttack)
+                if(info.collider.gameObject.name == "Player")
                 {
-                    player._health -= damage;
-                    canAttack = false;
-                    Invoke("ResetAttack", shotDelay);
+                    if(canAttack)
+                    {
+                        player._health -= damage;
+                        canAttack = false;
+                        Invoke("ResetAttack", shotDelay);
+                    }
                 }
             }
+            Debug.Log(info.collider.gameObject.name);
+            _state = 1;
         }
-        Debug.Log(info.collider.gameObject.name);
-        _state = 1;
     }
 
     void ResetAttack()
@@ -210,6 +213,7 @@ public class EnemyAi : MonoBehaviour
             RaycastHit info;
             if(Physics.Linecast(transform.position, playerObj.transform.position, out info, enemy))
             {
+                Debug.Log(info.collider.gameObject.name);
                 if(info.collider.gameObject.name == "Player")
                 {
                     _lostSight = false;

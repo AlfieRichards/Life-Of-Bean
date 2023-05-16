@@ -194,7 +194,9 @@ public class playerMovement : MonoBehaviour
         }
 
         //checks if grounded
+        Debug.DrawRay(_groundPoint.position, Vector3.down * _groundCheckDistance, Color.blue);
         _grounded = Physics.Raycast(_groundPoint.position, Vector3.down, _groundCheckDistance, _ground);
+        Debug.Log(_grounded);
         if(!_grounded){return;}
 
         //adds the jump force
@@ -205,7 +207,9 @@ public class playerMovement : MonoBehaviour
     //just checks if grounded, not particularly useful yet
     void GroundCheck()
     {
+        Debug.DrawRay(_groundPoint.position, Vector3.down * _groundCheckDistance, Color.blue);
         _grounded = Physics.Raycast(_groundPoint.position, Vector3.down, _groundCheckDistance, _ground);
+        Debug.Log(_grounded);
         if(_grounded)
         {
             _jumping = false;
