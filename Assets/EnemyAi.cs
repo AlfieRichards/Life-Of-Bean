@@ -32,7 +32,8 @@ public class EnemyAi : MonoBehaviour
     private bool shootAnimPlaying = false;
     private bool idleAnimPlaying = false;
 
-    public playerMovement player;
+    private playerMovement player;
+    private GameObject playerObj;
 
     //0 patrolling, 1 chasing, 2 attacking, 3 fleeing
     private int _state = 0;
@@ -44,6 +45,8 @@ public class EnemyAi : MonoBehaviour
     void Start()
     {
         _agent = GetComponent<NavMeshAgent>();
+        playerObj = GameObject.Find("Player");
+        player = playerObj.GetComponent<playerMovement>();
     }
 
     // Update is called once per frame
@@ -156,13 +159,20 @@ public class EnemyAi : MonoBehaviour
 
     void Attacking()
     {
-        Debug.Log("attacking");
-        if(canAttack)
+        RaycastHit info;
+        if(Physics.Linecast(transform.position, playerObj.transform.position, out info, enemy))
         {
-            player._health -= damage;
-            canAttack = false;
-            Invoke("ResetAttack", shotDelay);
+            if(info.collider.gameObject.name == "Player")
+            {
+                if(canAttack)
+                {
+                    player._health -= damage;
+                    canAttack = false;
+                    Invoke("ResetAttack", shotDelay);
+                }
+            }
         }
+        Debug.Log(info.collider.gameObject.name);
         _state = 1;
     }
 
@@ -176,15 +186,19 @@ public class EnemyAi : MonoBehaviour
     {
         if(other.gameObject.tag == "Player")
         {
-            if(!Physics.Linecast(transform.position, other.transform.position, enemy))
+            RaycastHit info;
+            if(Physics.Linecast(transform.position, playerObj.transform.position, out info, enemy))
             {
-                _lostSight = false;
-                _lastSeen = other.gameObject.transform;
-
-                if(_state != 2)
+                if(info.collider.gameObject.name == "Player")
                 {
-                    _state = 1;
-                }  
+                    _lostSight = false;
+                    _lastSeen = other.gameObject.transform;
+
+                    if(_state != 2)
+                    {
+                        _state = 1;
+                    }
+                }
             }
         }
     }
@@ -193,14 +207,18 @@ public class EnemyAi : MonoBehaviour
     {
         if(other.gameObject.tag == "Player")
         {
-            if(!Physics.Linecast(transform.position, other.transform.position, enemy))
+            RaycastHit info;
+            if(Physics.Linecast(transform.position, playerObj.transform.position, out info, enemy))
             {
-                _lostSight = false;
-                _lastSeen = other.gameObject.transform;
-
-                if(_state != 2)
+                if(info.collider.gameObject.name == "Player")
                 {
-                    _state = 1;
+                    _lostSight = false;
+                    _lastSeen = other.gameObject.transform;
+
+                    if(_state != 2)
+                    {
+                        _state = 1;
+                    }
                 }  
             }
         }
