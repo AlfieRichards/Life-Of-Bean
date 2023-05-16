@@ -22,6 +22,7 @@ public class EnemyAi : MonoBehaviour
     public float shotDelay = 5;
     public LayerMask enemy;
     public AnimationManager anim;
+    private AudioController audioController;
 
     private bool _lostSight = true;
     private bool _newDest = true;
@@ -45,6 +46,7 @@ public class EnemyAi : MonoBehaviour
     void Start()
     {
         _agent = GetComponent<NavMeshAgent>();
+        audioController = GetComponent<AudioController>();
         playerObj = GameObject.Find("Player");
         player = playerObj.GetComponent<playerMovement>();
     }
@@ -85,6 +87,7 @@ public class EnemyAi : MonoBehaviour
         if(!walkAnimPlaying && _agent.velocity != new Vector3(0,0,0))
         {
             AnimHandler("walk");
+            SoundManager("step");
             walkAnimPlaying = true;
         }
 
@@ -168,6 +171,7 @@ public class EnemyAi : MonoBehaviour
                 {
                     if(canAttack)
                     {
+                        SoundManager("shoot");
                         player._health -= damage;
                         canAttack = false;
                         Invoke("ResetAttack", shotDelay);
@@ -286,6 +290,24 @@ public class EnemyAi : MonoBehaviour
             default:
                 // If the input string does not match any animation name, print an error message
                 Debug.LogError("Animation not found: " + animReq);
+                break;
+        }
+    }
+
+    void SoundManager(string sound)
+    {
+        switch (sound)
+        {
+            case "step":
+                int step = Random.Range(1, 10);
+                audioController.PlayOneShotSound("step" + step);
+                break;
+            case "shoot":
+                audioController.PlayOneShotSound("shoot");
+                break;
+            default:
+                // If the input string does not match any animation name, print an error message
+                Debug.LogError("Sound not found: " + sound);
                 break;
         }
     }
