@@ -167,8 +167,6 @@ public class playerMovement : MonoBehaviour
         _camParentBone.transform.localRotation = Quaternion.Euler(_xRotation, 0f, 0f);
         _playerBody.Rotate(Vector3.up * _mouseX);
 
-        //Debug.Log(_mouseX + " + " + _mouseY);
-
 
         // //constrains y input
         // _yRotation = _yRotation += _mouseY;
@@ -211,7 +209,7 @@ public class playerMovement : MonoBehaviour
     {
         Debug.DrawRay(_groundPoint.position, Vector3.down * _groundCheckDistance, Color.blue);
         _grounded = Physics.Raycast(_groundPoint.position, Vector3.down, _groundCheckDistance, _ground);
-        //Debug.Log(_grounded);
+        Debug.Log(_grounded);
         if(_grounded)
         {
             _jumping = false;
