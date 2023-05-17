@@ -94,13 +94,13 @@ public class weaponScript : MonoBehaviour
     {
         //turns the fire rate from rpm to rps and then into time between shot
         _shotDelay = 1 / (_fireRate/60);
-        Debug.Log(_shotDelay);
+        //Debug.Log(_shotDelay);
 
         //sets mag size
         _ammoCapacity = _magSize;
 
         //subtracts this mag from spare ammo
-        Debug.Log(_spareAmmo);
+        //Debug.Log(_spareAmmo);
 
         //sets audio controller
         audioController = GetComponent<AudioController>();
@@ -217,7 +217,7 @@ public class weaponScript : MonoBehaviour
             else
             {
                 //if you have no ammo
-                Debug.Log("No ammo");
+                //Debug.Log("No ammo");
                 _reloading = false;
                 _canReload = false;
                 
@@ -284,7 +284,7 @@ public class weaponScript : MonoBehaviour
         {
             //works out how much more can be added to the mag
             int tAmmo = _magSize - _ammoCapacity;
-            Debug.Log(tAmmo);
+            //Debug.Log(tAmmo);
 
             //if you have enough ammo left to reload but not a full mag
             if(_spareAmmo < tAmmo)
@@ -292,7 +292,7 @@ public class weaponScript : MonoBehaviour
                 _ammoCapacity += _spareAmmo; //adds remaining spare ammo into mag
                 _spareAmmo = 0; //sets spare to empty
                 _canReload = false; //sets the begun can reload bool to false
-                Debug.Log("emptied spare ammo");
+                //Debug.Log("emptied spare ammo");
             }
 
             //if you have enough ammo left to reload from empty to full
@@ -300,7 +300,7 @@ public class weaponScript : MonoBehaviour
             {
                 _ammoCapacity += tAmmo; //fills the mag
                 _spareAmmo -= tAmmo; //subtracts the ammo used from spare ammo
-                Debug.Log("used " + tAmmo + " from spare ammo");
+                //Debug.Log("used " + tAmmo + " from spare ammo");
             }
             _reloading = false;
         }
@@ -344,17 +344,18 @@ public class weaponScript : MonoBehaviour
 
         //fires primary raycast
         RaycastHit cameraHit;
-        if (Physics.Raycast(_camera.position, transform.TransformDirection(Vector3.forward), out cameraHit, _range))
+        if (Physics.Raycast(_camera.position, transform.TransformDirection(Vector3.forward), out cameraHit, _range, _NotDamagable, QueryTriggerInteraction.Ignore))
         {
-            Debug.Log(Physics.Linecast(_firePoint.position, cameraHit.point));
+            Debug.Log(cameraHit.transform.name);
+            //Debug.Log(Physics.Linecast(_firePoint.position, cameraHit.point));
             Debug.DrawLine(_firePoint.position, cameraHit.point, Color.white, 5f, true);
             //check to see if the gun can hit it
             if (Physics.Linecast(_firePoint.position, cameraHit.point, _NotDamagable))
             {
-                Debug.Log("Weapon Obstructed");
+                //Debug.Log("Weapon Obstructed");
                 RaycastHit weaponHit;
 
-                if(Physics.Raycast(_firePoint.position, transform.TransformDirection(Vector3.forward), out weaponHit, _range))
+                if(Physics.Raycast(_firePoint.position, transform.TransformDirection(Vector3.forward), out weaponHit, _range, _NotDamagable, QueryTriggerInteraction.Ignore))
                 {
                     //puts hole in targets
                     if(weaponHit.transform.tag == "Penetrable")
@@ -365,6 +366,7 @@ public class weaponScript : MonoBehaviour
                     if(weaponHit.transform.tag == "Enemy")
                     {
                         weaponHit.transform.gameObject.GetComponent<EnemyAi>().health -= _damage;
+                        //Debug.Log(weaponHit.transform.name);
                     }
                     //everything but the targets
                     else
@@ -374,12 +376,12 @@ public class weaponScript : MonoBehaviour
                     }
 
                     //Debug code
-                    Debug.Log("Did Hit");
+                    //Debug.Log("Did Hit");
                 }
             }
             else
             {
-                Debug.Log("Weapon UnObstructed");
+                //Debug.Log("Weapon UnObstructed");
                 //puts hole in targets
                 if(cameraHit.transform.tag == "Penetrable")
                 {
@@ -388,17 +390,11 @@ public class weaponScript : MonoBehaviour
                 }
                 if(cameraHit.transform.tag == "Enemy")
                 {
-                    cameraHit.transform.gameObject.GetComponent<EnemyAi>().health -= _damage;
+                    EnemyAi enemyScript = cameraHit.transform.gameObject.GetComponent<EnemyAi>();
+                    enemyScript.health -= _damage;
                 }
-                //everything but the targets
-                else
-                {
-                    //deals damage to hit object
-                    //hit.takeDamage(damage);
-                }
-
                 //Debug code
-                Debug.Log("Did Hit");
+                //Debug.Log("Did Hit");
             }
         }
 
@@ -407,7 +403,7 @@ public class weaponScript : MonoBehaviour
 
 
         //debug code to show the weapon has been fired
-        Debug.Log("Firing");
+        //Debug.Log("Firing");
     }
 
     //used to delay the shots according to fire rate
