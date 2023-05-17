@@ -54,7 +54,7 @@ public class EnemyAi : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(_state);
+        //Debug.Log(_state);
 
         switch (_state)
         {
@@ -178,7 +178,7 @@ public class EnemyAi : MonoBehaviour
                     }
                 }
             }
-            Debug.Log(info.collider.gameObject.name);
+            //Debug.Log(info.collider.gameObject.name);
             _state = 1;
         }
     }
@@ -217,7 +217,7 @@ public class EnemyAi : MonoBehaviour
             RaycastHit info;
             if(Physics.Linecast(transform.position, playerObj.transform.position, out info, enemy))
             {
-                Debug.Log(info.collider.gameObject.name);
+                //Debug.Log(info.collider.gameObject.name);
                 if(info.collider.gameObject.name == "Player")
                 {
                     _lostSight = false;
