@@ -5266,7 +5266,7 @@ Transform:
   - {fileID: 4351005845608886424}
   - {fileID: 3348728063474371476}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3348728063110681486
 GameObject:
@@ -7470,7 +7470,7 @@ MonoBehaviour:
   _firePoint: {fileID: 5127953219610392017}
   _NotDamagable:
     serializedVersion: 2
-    m_Bits: 511
+    m_Bits: 512
   _firing: 0
   _aiming: 0
   _tempAiming: 0
