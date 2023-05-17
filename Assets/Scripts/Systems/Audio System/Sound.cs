@@ -20,6 +20,8 @@ public class Sound
     [Range(0f, 1f)]
     //this is pitch distortion based on distance, imagine the pitch changing as a bullet flys past you. Mostly useless though so keep at 0
     public float dopplerLevel = 0f;
+    public float maxDistance = 50f;
+    public AudioRolloffMode rolloffMode = AudioRolloffMode.Linear;
 
     public bool loop;
 

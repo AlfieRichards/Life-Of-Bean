@@ -46,7 +46,7 @@ public class AudioManager : MonoBehaviour
             s.source.loop = s.loop;
             s.source.dopplerLevel = s.dopplerLevel;
             s.source.spatialBlend = s.spatialBlend;
-            s.source.outputAudioMixerGroup = soundMixer;
+            s.source.outputAudioMixerGroup = s.outputAudioMixerGroup;
         }
 
         foreach (Sound m in music)
@@ -59,7 +59,7 @@ public class AudioManager : MonoBehaviour
             m.source.loop = m.loop;
             m.source.dopplerLevel = m.dopplerLevel;
             m.source.spatialBlend = m.spatialBlend;
-            m.source.outputAudioMixerGroup = musicMixer;
+            m.source.outputAudioMixerGroup = m.outputAudioMixerGroup;
         }
         //this could be used to play music when a scene loads
         PlayMusic("BGM"); //this will play the music sound with the name BGM

@@ -29,7 +29,9 @@ public class AudioController : MonoBehaviour
             s.source.loop = s.loop;
             s.source.spatialBlend = s.spatialBlend;
             s.source.dopplerLevel = s.dopplerLevel;
-            s.source.outputAudioMixerGroup = soundMixer;
+            s.source.outputAudioMixerGroup = s.outputAudioMixerGroup;
+            s.source.rolloffMode = s.rolloffMode;
+            s.source.maxDistance = s.maxDistance;
         }
 
         foreach (Sound m in music)
@@ -42,7 +44,7 @@ public class AudioController : MonoBehaviour
             m.source.loop = m.loop;
             m.source.dopplerLevel = m.dopplerLevel;
             m.source.spatialBlend = m.spatialBlend;
-            m.source.outputAudioMixerGroup = musicMixer;
+            m.source.outputAudioMixerGroup = m.outputAudioMixerGroup;
         }
 
         //this could be used to play music when a scene loads

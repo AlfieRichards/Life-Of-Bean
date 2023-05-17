@@ -1,13 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class InteractionScript : MonoBehaviour
 {
-    [Header("Target Options")]
+    [Header("General Options")]
     //_target Functionality
     [SerializeField] private bool _isTargetSwitch = false;
+    [SerializeField] private bool _isDoor = false;
 
+    [Header("Target Options")]
     [ConditionalHide("_isTargetSwitch", true)]
     [SerializeField] private bool _movingTarget = false;
 
@@ -26,8 +29,18 @@ public class InteractionScript : MonoBehaviour
     [SerializeField] private Transform _targetEnd;
 
     //interaction bool
-    [ConditionalHide("_isTargetSwitch", true)]
     [HideInInspector] public bool _interacted = false;
+
+    //scene loader info
+    [Header("Door Options")]
+    [ConditionalHide("_isDoor", true)]
+    [SerializeField] private int intendedScene;
+    [ConditionalHide("_isDoor", true)]
+    [SerializeField] private LevelLoader _levelLoader;
+    [ConditionalHide("_isDoor", true)]
+    [SerializeField] private bool _lockAble;
+    [ConditionalHide("_lockAble", true)]
+    [SerializeField] private FadeController _fadeController;
 
     // Start is called before the first frame update
     private void Start()
@@ -45,6 +58,20 @@ public class InteractionScript : MonoBehaviour
             {
                 _movingTarget = true;
                 _interacted = false;
+            }
+
+            if(_isDoor)
+            {
+                if(_lockAble)
+                {
+                    if(!_fadeController.locked)
+                    {
+                        _levelLoader.StartCoroutine(_levelLoader.LoadLevel(intendedScene));
+                        Cursor.lockState = CursorLockMode.None;
+                        Debug.Log("loadingNextScene");
+                        _interacted = false;
+                    }
+                }
             }
         }
 
