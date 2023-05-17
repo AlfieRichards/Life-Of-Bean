@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Interactable
   - Penetrable
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -17,7 +18,7 @@ TagManager:
   - Mask
   - PostProcessing
   - Damagable
-  - 
+  - Hoverable
   - 
   - 
   - 
