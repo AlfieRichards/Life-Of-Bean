@@ -8,14 +8,14 @@ public class EnemyAi : MonoBehaviour
     private NavMeshAgent _agent;
 
     [SerializeField]private float _attackRange = 5f;
-    [SerializeField]private float _decisionRange = 1f;
 
     [SerializeField]private float _decisionTime = 2f;
     [SerializeField]private float _forgetTime = 8f;
 
     [SerializeField]private float _patrolRange = 10f; //radius of sphere
 
-    [SerializeField]private Transform _centrePoint; //centre of the area the _agent wants to move around in
+    private Transform _centrePoint; //centre of the area the _agent wants to move around in
+    private LevelManager levelManager; //thing that handles score
 
     public int health = 100;
     public int damage = 10;
@@ -49,6 +49,8 @@ public class EnemyAi : MonoBehaviour
         audioController = GetComponent<AudioController>();
         playerObj = GameObject.Find("Player");
         player = playerObj.GetComponent<playerMovement>();
+        _centrePoint = this.transform.parent;
+        levelManager = FindObjectOfType<LevelManager>();
     }
 
     // Update is called once per frame
@@ -114,6 +116,7 @@ public class EnemyAi : MonoBehaviour
         //wait a bit
         //destroy
         Destroy(gameObject);
+        levelManager.EnemyKilled();
     }
 
     void Patrolling()
@@ -139,23 +142,26 @@ public class EnemyAi : MonoBehaviour
 
     void Chasing()
     {
-        if(_lostSight)
+        if(_lastSeen != null)
         {
-            StartCoroutine(StartWait());
-
-            //transform.LookAt(_lastSeen.position);
-            _agent.SetDestination(_lastSeen.position);
-        }
-        else
-        {
-            //transform.LookAt(_lastSeen.position);
-            _agent.SetDestination(_lastSeen.position);
-
-            float dist = Vector3.Distance(_lastSeen.position, transform.position);
-
-            if(dist < _attackRange)
+            if(_lostSight)
             {
-                _state = 2;
+                StartCoroutine(StartWait());
+
+                //transform.LookAt(_lastSeen.position);
+                _agent.SetDestination(_lastSeen.position);
+            }
+            else
+            {
+                //transform.LookAt(_lastSeen.position);
+                _agent.SetDestination(_lastSeen.position);
+
+                float dist = Vector3.Distance(_lastSeen.position, transform.position);
+
+                if(dist < _attackRange)
+                {
+                    _state = 2;
+                }
             }
         }
     }
@@ -164,22 +170,25 @@ public class EnemyAi : MonoBehaviour
     {
         if(Random.Range(0, 3) == 2)
         {
-            RaycastHit info;
-            if(Physics.Linecast(transform.position, playerObj.transform.position, out info, enemy))
+            if (GameObject.Find("Player") != null)
             {
-                if(info.collider.gameObject.name == "Player")
+                RaycastHit info;
+                if(Physics.Linecast(transform.position, playerObj.transform.position, out info, enemy))
                 {
-                    if(canAttack)
+                    if(info.collider.gameObject.name == "Player")
                     {
-                        SoundManager("shoot");
-                        player._health -= damage;
-                        canAttack = false;
-                        Invoke("ResetAttack", shotDelay);
+                        if(canAttack)
+                        {
+                            SoundManager("shoot");
+                            player._health -= damage;
+                            canAttack = false;
+                            Invoke("ResetAttack", shotDelay);
+                        }
                     }
                 }
+                //Debug.Log(info.collider.gameObject.name);
+                _state = 1;
             }
-            //Debug.Log(info.collider.gameObject.name);
-            _state = 1;
         }
     }
 

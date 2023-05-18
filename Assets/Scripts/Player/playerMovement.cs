@@ -11,7 +11,6 @@ public class playerMovement : MonoBehaviour
     [Header("Movement Options")]
     [SerializeField] private float _speed = 5;
     [SerializeField] private float _sprintSpeed = 10;
-    [SerializeField] private float _crouchSpeed = 0;
 
     //jumpOptions
     [Header("Jumping Options")]
@@ -60,6 +59,7 @@ public class playerMovement : MonoBehaviour
     private bool _healing = false;
     private bool _flash = false;
     private float _TimeSinceDamage = 0f;
+    private LevelManager levelManager;
     
     // Start is called before the first frame update
     void Start()
@@ -70,6 +70,7 @@ public class playerMovement : MonoBehaviour
         _prevHealth = _health;
         red.a = 0f;
         healthOverlay.a = 0f;
+        levelManager = FindObjectOfType<LevelManager>();
     }
 
     void Update()
@@ -198,7 +199,7 @@ public class playerMovement : MonoBehaviour
         //checks if grounded
         Debug.DrawRay(_groundPoint.position, Vector3.down * _groundCheckDistance, Color.blue);
         _grounded = Physics.Raycast(_groundPoint.position, Vector3.down, _groundCheckDistance, _ground);
-        Debug.Log(_grounded);
+        //Debug.Log(_grounded);
         if(!_grounded){return;}
 
         //adds the jump force
@@ -285,7 +286,7 @@ public class playerMovement : MonoBehaviour
     {
         if(_health <= 0)
         {
-            //idk die or something
+            levelManager.PlayerKilled(gameObject);
         }
         if(_health < _prevHealth)
         {
