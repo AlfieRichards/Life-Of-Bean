@@ -4370,7 +4370,7 @@ Transform:
   m_Children:
   - {fileID: 2647928165633146530}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2537195504234554172
 MeshFilter:
@@ -4484,12 +4484,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _attackRange: 30
-  _decisionRange: 1
   _decisionTime: 5
   _forgetTime: 8
   _patrolRange: 30
-  _centrePoint: {fileID: 0}
-  levelManager: {fileID: 0}
   health: 100
   damage: 10
   shotDelay: 0.3
@@ -4538,7 +4535,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 8fc517e06365e5945a60993b299a4f89, type: 3}
     outputAudioMixerGroup: {fileID: -4387434332411123013, guid: 20e3b4152ed5ec74a955bd5eab71c050,
       type: 2}
-    volume: 1
+    volume: 0.5
     pitch: 1
     spatialBlend: 0.5
     dopplerLevel: 0
@@ -4550,11 +4547,11 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 370c563445639d34d9044b27fefe7b43, type: 3}
     outputAudioMixerGroup: {fileID: -4387434332411123013, guid: 20e3b4152ed5ec74a955bd5eab71c050,
       type: 2}
-    volume: 1
+    volume: 0.5
     pitch: 1
     spatialBlend: 0.5
     dopplerLevel: 0
-    maxDistance: 50
+    maxDistance: 5
     rolloffMode: 1
     loop: 0
     source: {fileID: 0}
@@ -4562,11 +4559,11 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 04e2ff3bbc791824dad221758b10fe78, type: 3}
     outputAudioMixerGroup: {fileID: -4387434332411123013, guid: 20e3b4152ed5ec74a955bd5eab71c050,
       type: 2}
-    volume: 1
+    volume: 0.5
     pitch: 1
     spatialBlend: 0.5
     dopplerLevel: 0
-    maxDistance: 50
+    maxDistance: 5
     rolloffMode: 1
     loop: 0
     source: {fileID: 0}
@@ -4574,11 +4571,11 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 5902e6a788d50c9438296c6bea972a06, type: 3}
     outputAudioMixerGroup: {fileID: -4387434332411123013, guid: 20e3b4152ed5ec74a955bd5eab71c050,
       type: 2}
-    volume: 1
+    volume: 0.5
     pitch: 1
     spatialBlend: 0.5
     dopplerLevel: 0
-    maxDistance: 50
+    maxDistance: 5
     rolloffMode: 1
     loop: 0
     source: {fileID: 0}
@@ -4586,11 +4583,11 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 5a04260ac70d87647a9c257b8b5db9a3, type: 3}
     outputAudioMixerGroup: {fileID: -4387434332411123013, guid: 20e3b4152ed5ec74a955bd5eab71c050,
       type: 2}
-    volume: 1
+    volume: 0.5
     pitch: 1
     spatialBlend: 0.5
     dopplerLevel: 0
-    maxDistance: 50
+    maxDistance: 5
     rolloffMode: 1
     loop: 0
     source: {fileID: 0}
@@ -4598,11 +4595,11 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: cc19adc7a2c65ed4ab49612b1cef96cc, type: 3}
     outputAudioMixerGroup: {fileID: -4387434332411123013, guid: 20e3b4152ed5ec74a955bd5eab71c050,
       type: 2}
-    volume: 1
+    volume: 0.5
     pitch: 1
     spatialBlend: 0.5
     dopplerLevel: 0
-    maxDistance: 50
+    maxDistance: 5
     rolloffMode: 1
     loop: 0
     source: {fileID: 0}
@@ -4610,11 +4607,11 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: e23df494c8d14bf49a9dc9f9b05b101b, type: 3}
     outputAudioMixerGroup: {fileID: -4387434332411123013, guid: 20e3b4152ed5ec74a955bd5eab71c050,
       type: 2}
-    volume: 1
+    volume: 0.5
     pitch: 1
     spatialBlend: 0.5
     dopplerLevel: 0
-    maxDistance: 50
+    maxDistance: 25
     rolloffMode: 1
     loop: 0
     source: {fileID: 0}
@@ -4622,11 +4619,11 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 4790728fed868e245991a76a74188bf8, type: 3}
     outputAudioMixerGroup: {fileID: -4387434332411123013, guid: 20e3b4152ed5ec74a955bd5eab71c050,
       type: 2}
-    volume: 1
+    volume: 0.5
     pitch: 1
     spatialBlend: 0.5
     dopplerLevel: 0
-    maxDistance: 50
+    maxDistance: 5
     rolloffMode: 1
     loop: 0
     source: {fileID: 0}
@@ -4634,11 +4631,11 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 3005cc8e5ff55e5429de1b4cadf8a5c2, type: 3}
     outputAudioMixerGroup: {fileID: -4387434332411123013, guid: 20e3b4152ed5ec74a955bd5eab71c050,
       type: 2}
-    volume: 1
+    volume: 0.5
     pitch: 1
     spatialBlend: 0.5
     dopplerLevel: 0
-    maxDistance: 50
+    maxDistance: 5
     rolloffMode: 1
     loop: 0
     source: {fileID: 0}
@@ -4646,11 +4643,11 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 671b995af48c24a46bc30cbdfc09caab, type: 3}
     outputAudioMixerGroup: {fileID: -4387434332411123013, guid: 20e3b4152ed5ec74a955bd5eab71c050,
       type: 2}
-    volume: 1
+    volume: 0.5
     pitch: 1
     spatialBlend: 0.5
     dopplerLevel: 0
-    maxDistance: 50
+    maxDistance: 5
     rolloffMode: 1
     loop: 0
     source: {fileID: 0}
@@ -4658,11 +4655,11 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 1f0194665c834844eafa5a4d371dc171, type: 3}
     outputAudioMixerGroup: {fileID: -4387434332411123013, guid: 20e3b4152ed5ec74a955bd5eab71c050,
       type: 2}
-    volume: 1
+    volume: 0.5
     pitch: 1
     spatialBlend: 0.5
     dopplerLevel: 0
-    maxDistance: 50
+    maxDistance: 5
     rolloffMode: 1
     loop: 0
     source: {fileID: 0}

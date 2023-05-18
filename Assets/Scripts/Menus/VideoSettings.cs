@@ -196,7 +196,7 @@ public class VideoSettings : MonoBehaviour
             option.GetComponent<Toggle>().isOn = false;
         }
 
-        switch (PlayerPrefs.GetInt("QualityLevel"))
+        switch (PlayerPrefs.GetInt("QualityLevel", 3))
         {
             case 0:
             {
@@ -234,7 +234,7 @@ public class VideoSettings : MonoBehaviour
             option.GetComponent<Toggle>().isOn = false;
         }
 
-        switch (PlayerPrefs.GetInt("FPSLevel"))
+        switch (PlayerPrefs.GetInt("FPSLevel", 4))
         {
             case 0:
             {
@@ -272,7 +272,7 @@ public class VideoSettings : MonoBehaviour
             {
                 QualitySettings.vSyncCount = 1;
                 Application.targetFrameRate = -1;
-                FPSOptions[3].GetComponent<Toggle>().isOn = true;
+                FPSOptions[4].GetComponent<Toggle>().isOn = true;
                 break;
             }
             default:
@@ -284,7 +284,7 @@ public class VideoSettings : MonoBehaviour
             option.GetComponent<Toggle>().isOn = false;
         }
 
-        switch (PlayerPrefs.GetInt("FullScreen"))
+        switch (PlayerPrefs.GetInt("FullScreen", 0))
         {
             case 0:
             {

@@ -20039,8 +20039,9 @@ MonoBehaviour:
   sounds:
   - name: fire
     clip: {fileID: 8300000, guid: 8fc517e06365e5945a60993b299a4f89, type: 3}
-    outputAudioMixerGroup: {fileID: 0}
-    volume: 1
+    outputAudioMixerGroup: {fileID: -4387434332411123013, guid: 20e3b4152ed5ec74a955bd5eab71c050,
+      type: 2}
+    volume: 0.5
     pitch: 1
     spatialBlend: 0.5
     dopplerLevel: 0
@@ -20050,8 +20051,9 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: reload
     clip: {fileID: 8300000, guid: 971d85426a4a0de4eb0f1a56d044052d, type: 3}
-    outputAudioMixerGroup: {fileID: 0}
-    volume: 1
+    outputAudioMixerGroup: {fileID: -4387434332411123013, guid: 20e3b4152ed5ec74a955bd5eab71c050,
+      type: 2}
+    volume: 0.8
     pitch: 1
     spatialBlend: 0.5
     dopplerLevel: 0
@@ -20061,8 +20063,9 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: dryfire
     clip: {fileID: 8300000, guid: 26efdb5e12b57874387ca62979732251, type: 3}
-    outputAudioMixerGroup: {fileID: 0}
-    volume: 1
+    outputAudioMixerGroup: {fileID: -4387434332411123013, guid: 20e3b4152ed5ec74a955bd5eab71c050,
+      type: 2}
+    volume: 0.5
     pitch: 1
     spatialBlend: 0.5
     dopplerLevel: 0

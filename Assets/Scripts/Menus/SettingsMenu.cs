@@ -93,13 +93,13 @@ public class SettingsMenu : MonoBehaviour {
 
     void LoadPrefs()
     {
-        QualityDropdown.value = PlayerPrefs.GetInt("QualityLevel");
-        master.value = PlayerPrefs.GetFloat("MasterVolume");
-        music.value = PlayerPrefs.GetFloat("BgmVolume");
-        effects.value = PlayerPrefs.GetFloat("SfxVolume");
-        sensitivity.value = PlayerPrefs.GetFloat("Sensitivity");
+        QualityDropdown.value = PlayerPrefs.GetInt("QualityLevel", 3);
+        master.value = PlayerPrefs.GetFloat("MasterVolume", -10);
+        music.value = PlayerPrefs.GetFloat("BgmVolume", -10);
+        effects.value = PlayerPrefs.GetFloat("SfxVolume", -10);
+        sensitivity.value = PlayerPrefs.GetFloat("Sensitivity", 150);
         player.mouseSensitivity = sensitivity.value;
-        CheckFullscreen(PlayerPrefs.GetInt("FullscreenBool"));
+        CheckFullscreen(PlayerPrefs.GetInt("FullscreenBool", 0));
     }
 
     public void MainMenu()

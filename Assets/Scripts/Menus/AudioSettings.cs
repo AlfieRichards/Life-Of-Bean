@@ -38,8 +38,8 @@ public class AudioSettings : MonoBehaviour
 
     void LoadPrefs()
     {
-        master.value = PlayerPrefs.GetFloat("MasterVolume");
-        music.value = PlayerPrefs.GetFloat("BgmVolume");
-        effects.value = PlayerPrefs.GetFloat("SfxVolume");
+        master.value = PlayerPrefs.GetFloat("MasterVolume", -10);
+        music.value = PlayerPrefs.GetFloat("BgmVolume", -10);
+        effects.value = PlayerPrefs.GetFloat("SfxVolume", -10);
     }
 }

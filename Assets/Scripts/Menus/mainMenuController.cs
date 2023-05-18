@@ -52,8 +52,8 @@ public class mainMenuController : MonoBehaviour
         audioManager.PlaySound("startup");
         audioManager.PlaySound("pcLoop");
 
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     // Update is called once per frame
