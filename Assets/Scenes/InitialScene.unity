@@ -1764,7 +1764,7 @@ RectTransform:
   m_Children:
   - {fileID: 2117112381}
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2487,7 +2487,7 @@ Transform:
   m_Children:
   - {fileID: 1225556659}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &809757406
 PrefabInstance:
@@ -2500,7 +2500,7 @@ PrefabInstance:
     - target: {fileID: 6378361265212908932, guid: 377a171f3d9f55e4d90f951a4e43df6e,
         type: 3}
       propertyPath: m_RootOrder
-      value: 15
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 6378361265212908932, guid: 377a171f3d9f55e4d90f951a4e43df6e,
         type: 3}
@@ -2840,7 +2840,7 @@ Transform:
   - {fileID: 1031150000}
   - {fileID: 316039252}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &862049729
 GameObject:
@@ -4001,7 +4001,7 @@ Transform:
   m_Children:
   - {fileID: 1095133593}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1003529898
 GameObject:
@@ -5599,6 +5599,8 @@ MonoBehaviour:
     pitch: 1
     spatialBlend: 1
     dopplerLevel: 0
+    maxDistance: 50
+    rolloffMode: 1
     loop: 1
     source: {fileID: 0}
   music: []
@@ -6292,7 +6294,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transition: {fileID: 1466416403}
-  transitionTime: 1
   lockable: 0
   locked: 0
   visible: 0
@@ -6325,7 +6326,7 @@ Transform:
   m_Children:
   - {fileID: 1466416408}
   m_Father: {fileID: 0}
-  m_RootOrder: 22
+  m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1225556659 stripped
 Transform:
@@ -7382,7 +7383,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1338689309
 GameObject:
@@ -10588,7 +10589,7 @@ Transform:
   - {fileID: 1003529899}
   - {fileID: 277639863}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1841917704
 PrefabInstance:
@@ -10761,54 +10762,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
---- !u!1 &1914740333
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1914740335}
-  - component: {fileID: 1914740334}
-  m_Layer: 0
-  m_Name: Discord
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1914740334
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1914740333}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c83983196a219e4a9ae6e540dd7d7b0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  applicationID: 1085640187759034459
-  details: Playing the greatest game ever made (Currently in development)
-  largeImage: gamelogo
-  largeText: Life Of Bean
---- !u!4 &1914740335
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1914740333}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -101.409164, y: -5.7046165, z: -154.97528}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 9
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1953454694
 GameObject:
   m_ObjectHideFlags: 0
@@ -11625,7 +11578,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!114 &2037464004 stripped
 MonoBehaviour:
@@ -17743,7 +17696,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 20
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!135 &3032368589376948073
 SphereCollider:
@@ -17797,7 +17750,7 @@ MonoBehaviour:
   _targetStart: {fileID: 0}
   _targetEnd: {fileID: 0}
   _interacted: 0
-  intendedScene: 2
+  intendedScene: 3
   _levelLoader: {fileID: 1428068259}
   _lockAble: 1
   _fadeController: {fileID: 2037464004}
@@ -18331,7 +18284,7 @@ PrefabInstance:
     - target: {fileID: 6781155076301598832, guid: e61ccfceeb200424d8063361247cd0ad,
         type: 3}
       propertyPath: m_RootOrder
-      value: 18
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 6781155076301598832, guid: e61ccfceeb200424d8063361247cd0ad,
         type: 3}
@@ -20091,6 +20044,8 @@ MonoBehaviour:
     pitch: 1
     spatialBlend: 0.5
     dopplerLevel: 0
+    maxDistance: 50
+    rolloffMode: 1
     loop: 0
     source: {fileID: 0}
   - name: reload
@@ -20100,6 +20055,8 @@ MonoBehaviour:
     pitch: 1
     spatialBlend: 0.5
     dopplerLevel: 0
+    maxDistance: 50
+    rolloffMode: 1
     loop: 0
     source: {fileID: 0}
   - name: dryfire
@@ -20109,6 +20066,8 @@ MonoBehaviour:
     pitch: 1
     spatialBlend: 0.5
     dopplerLevel: 0
+    maxDistance: 50
+    rolloffMode: 1
     loop: 0
     source: {fileID: 0}
   music:
@@ -20120,6 +20079,8 @@ MonoBehaviour:
     pitch: 1
     spatialBlend: 1
     dopplerLevel: 0
+    maxDistance: 50
+    rolloffMode: 1
     loop: 0
     source: {fileID: 0}
   musicMixer: {fileID: -3020269314422819713, guid: 20e3b4152ed5ec74a955bd5eab71c050,
@@ -20207,7 +20168,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 5
   _sprintSpeed: 10
-  _crouchSpeed: 0
   _jumpPower: 0.75
   _groundCheckDistance: 0.4
   mouseSensitivity: 244.11
@@ -20656,7 +20616,7 @@ PrefabInstance:
     - target: {fileID: 4608331029689278573, guid: 33e6271d472d23b4791bae4a2002bdbf,
         type: 3}
       propertyPath: m_RootOrder
-      value: 21
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 4608331029689278573, guid: 33e6271d472d23b4791bae4a2002bdbf,
         type: 3}
@@ -23054,7 +23014,7 @@ PrefabInstance:
     - target: {fileID: 5982314274489213288, guid: f3cb48eb529be1942a69ef7761094e9c,
         type: 3}
       propertyPath: m_RootOrder
-      value: 19
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 5982314274489213288, guid: f3cb48eb529be1942a69ef7761094e9c,
         type: 3}

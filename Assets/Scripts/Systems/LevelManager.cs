@@ -146,16 +146,16 @@ public class LevelManager : MonoBehaviour
 
     public void Retry()
     {
-        levelLoader.StartCoroutine(levelLoader.LoadLevel(2));
+        levelLoader.StartCoroutine(levelLoader.LoadLevel(3));
     }
 
     public void MainMenu()
     {
-        levelLoader.StartCoroutine(levelLoader.LoadLevel(0));
+        levelLoader.StartCoroutine(levelLoader.LoadLevel(1));
     }
 
     public void Credits()
     {
-        levelLoader.StartCoroutine(levelLoader.LoadLevel(3));
+        levelLoader.StartCoroutine(levelLoader.LoadLevel(4));
     }
 }
