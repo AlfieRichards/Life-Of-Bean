@@ -55,9 +55,9 @@ public class DebuggingSystem : MonoBehaviour
             {
                 GUI.Box(new Rect (Screen.width - 250,0,250,200), "Weapon Values");
                 GUI.Label(new Rect(Screen.width - 230, 20, 100, 20), "Ammunition");
-                GUI.Label(new Rect(Screen.width - 230, 40, 250, 20), "Mag Size: " + _weapon._magSize);
-                GUI.Label(new Rect(Screen.width - 230, 60, 250, 20), "Ammo In Mag: " + _weapon._ammoCapacity);
-                GUI.Label(new Rect(Screen.width - 230, 80, 250, 20), "Spare Ammo: " + _weapon._spareAmmo);
+                //GUI.Label(new Rect(Screen.width - 230, 40, 250, 20), "Mag Size: " + _weapon._magSize);
+                //GUI.Label(new Rect(Screen.width - 230, 60, 250, 20), "Ammo In Mag: " + _weapon._ammoCapacity);
+                //GUI.Label(new Rect(Screen.width - 230, 80, 250, 20), "Spare Ammo: " + _weapon._spareAmmo);
 
                 GUI.Label(new Rect(Screen.width - 230, 100, 250, 20), "Booleans");
                 GUI.Label(new Rect(Screen.width - 230, 120, 250, 20), "Firing: " + _weapon._firing);

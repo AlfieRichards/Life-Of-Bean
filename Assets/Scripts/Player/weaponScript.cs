@@ -40,11 +40,11 @@ public class weaponScript : MonoBehaviour
     //ammo volumes
     [Header("Ammunition Options")]
     [ConditionalHide("_showAmmunitionOptions", true)]
-    [SerializeField] public int _magSize; //total mag size
+    [SerializeField] private int _magSize; //total mag size
     [ConditionalHide("_showAmmunitionOptions", true)]
-    [SerializeField] public int _ammoCapacity; //ammo in mag
+    [SerializeField] private int _ammoCapacity; //ammo in mag
     [ConditionalHide("_showAmmunitionOptions", true)]
-    [SerializeField] public int _spareAmmo; //spare ammo to reload with
+    [SerializeField] private int _spareAmmo; //spare ammo to reload with
 
     //weapon properties
     [Header("Weapon Options")]
@@ -197,7 +197,7 @@ public class weaponScript : MonoBehaviour
         if(Input.GetKeyDown("r") && !_reloading)
         {
             //checks there is enough ammo to reload
-            if(_spareAmmo > 0 && !_reloading)
+            if(_spareAmmo > 0 && !_reloading && (_ammoCapacity != _magSize))
             {
                 //reloads the weapon after the reload time
                 _reloading = true;
