@@ -57,6 +57,22 @@ AudioMixerGroupController:
   m_Mute: 0
   m_Solo: 0
   m_BypassEffects: 0
+--- !u!244 &-1002146724110176000
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 1acc66e658eb42542aeb47b782f83618
+  m_EffectName: Highpass Simple
+  m_MixLevel: e57e62243e12a614f87a315f294bb50e
+  m_Parameters:
+  - m_ParameterName: Cutoff freq
+    m_GUID: 35bac0a94e785df4d8dfc0962863b9fa
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
 --- !u!241 &24100000
 AudioMixerController:
   m_ObjectHideFlags: 0
@@ -75,6 +91,8 @@ AudioMixerController:
   m_ExposedParameters:
   - guid: 7ad86a8dc64ac6244af78f25e849759f
     name: BgmVolume
+  - guid: 8f7b3f56e3ef35b44907c34239fbc5e3
+    name: CutSceneVolume
   - guid: 7b164eb0bdd2f7a4fac9f106086912df
     name: MasterVolume
   - guid: 1c3b80884e00402419337d18ac7a1c6a
@@ -135,7 +153,7 @@ AudioMixerSnapshotController:
   m_SnapshotID: 86517f0443733bf4d98f5606baa40e6f
   m_FloatValues:
     7b164eb0bdd2f7a4fac9f106086912df: 0
-    8f7b3f56e3ef35b44907c34239fbc5e3: 4.648096
+    8f7b3f56e3ef35b44907c34239fbc5e3: 0
     1c3b80884e00402419337d18ac7a1c6a: 0.27000841
     7ad86a8dc64ac6244af78f25e849759f: 0
   m_TransitionOverrides: {}
