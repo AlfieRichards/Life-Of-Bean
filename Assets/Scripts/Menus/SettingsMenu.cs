@@ -65,28 +65,28 @@ public class SettingsMenu : MonoBehaviour {
         Screen.fullScreen = isFullscreen;
         if(isFullscreen)
         {
-            PlayerPrefs.SetInt("FullscreenBool", 1);
+            PlayerPrefs.SetInt("FullScreen", 1);
             fullscreenToggle.isOn = true;
         }
         else
         {
-            PlayerPrefs.SetInt("FullscreenBool", 0);
+            PlayerPrefs.SetInt("FullScreen", 0);
             fullscreenToggle.isOn = false;
         }
     }
 
     void CheckFullscreen(int num)
     {
-        if(num == 1)
+        if(num == 0)
         {
             SetFullscreen(true);
-            PlayerPrefs.SetInt("FullscreenBool", num);
+            PlayerPrefs.SetInt("FullScreen", num);
             fullscreenToggle.isOn = true;
         }
         else
         {
             SetFullscreen(false);
-            PlayerPrefs.SetInt("FullscreenBool", num);
+            PlayerPrefs.SetInt("FullScreen", num);
             fullscreenToggle.isOn = false;
         }
     }
@@ -99,7 +99,7 @@ public class SettingsMenu : MonoBehaviour {
         effects.value = PlayerPrefs.GetFloat("SfxVolume", -10);
         sensitivity.value = PlayerPrefs.GetFloat("Sensitivity", 150);
         player.mouseSensitivity = sensitivity.value;
-        CheckFullscreen(PlayerPrefs.GetInt("FullscreenBool", 0));
+        CheckFullscreen(PlayerPrefs.GetInt("FullScreen", 0));
     }
 
     public void MainMenu()
