@@ -190,22 +190,26 @@ public class playerMovement : MonoBehaviour
 
     void Jump()
     {
-        //if youre crouched and try to jump plays the uncrouch anim, cant move until uncrouched
-        if(_crouching)
+        if(!_jumping)
         {
-            ToggleCrouch();
-            return;
+            //if youre crouched and try to jump plays the uncrouch anim, cant move until uncrouched
+            if(_crouching)
+            {
+                ToggleCrouch();
+                return;
+            }
+
+            //checks if grounded
+            Debug.DrawRay(_groundPoint.position, Vector3.down * _groundCheckDistance, Color.blue);
+            _grounded = Physics.Raycast(_groundPoint.position, Vector3.down, _groundCheckDistance, _ground);
+            //Debug.Log(_grounded);
+            if(!_grounded){return;}
+
+            //adds the jump force
+            _rb.AddForce(Vector3.up * _jumpPower, ForceMode.Impulse);
+            Debug.Log("aa");
+            _jumping = true;
         }
-
-        //checks if grounded
-        Debug.DrawRay(_groundPoint.position, Vector3.down * _groundCheckDistance, Color.blue);
-        _grounded = Physics.Raycast(_groundPoint.position, Vector3.down, _groundCheckDistance, _ground);
-        //Debug.Log(_grounded);
-        if(!_grounded){return;}
-
-        //adds the jump force
-        _rb.AddForce(Vector3.up * _jumpPower, ForceMode.Impulse);
-        _jumping = true;
     }
 
     //just checks if grounded, not particularly useful yet
@@ -214,6 +218,15 @@ public class playerMovement : MonoBehaviour
         Debug.DrawRay(_groundPoint.position, Vector3.down * _groundCheckDistance, Color.blue);
         _grounded = Physics.Raycast(_groundPoint.position, Vector3.down, _groundCheckDistance, _ground);
         //Debug.Log(_grounded);
+        if(_jumping && _grounded)
+        {
+            _jumping = false;
+            //Invoke("JumpDelay", 0.2f);
+        }
+    }
+
+    void JumpDelay()
+    {
         if(_grounded)
         {
             _jumping = false;

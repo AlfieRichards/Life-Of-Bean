@@ -7306,10 +7306,10 @@ CapsuleCollider:
   m_Material: {fileID: 13400000, guid: 683e2e463b6d4ea4fa02fb4b2a2025ac, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.27505693
+  m_Radius: 0.2642466
   m_Height: 1.4270281
   m_Direction: 1
-  m_Center: {x: 0.016670983, y: -0.1456189, z: -0.04041171}
+  m_Center: {x: 0.016670983, y: -0.14561892, z: 0.0416921}
 --- !u!54 &4351005845608886438
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -7324,7 +7324,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &4351005845608886439
 MonoBehaviour:
@@ -7340,8 +7340,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 5
   _sprintSpeed: 10
-  _jumpPower: 0.75
-  _groundCheckDistance: 0.4
+  _jumpPower: 4
+  _groundCheckDistance: 0.1
   mouseSensitivity: 244.11
   _groundPoint: {fileID: 4351005847093583549}
   _ground:
