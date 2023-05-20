@@ -48,7 +48,6 @@ public class GameplayManager : MonoBehaviour
                 if(gun.fired && gun.targetHits == 0)
                 {
                     audioManager.PlayOneShotSound("14");
-                    completedRange = true;
                     return;
                 }
             }
@@ -59,11 +58,6 @@ public class GameplayManager : MonoBehaviour
             audioManager.PlayOneShotSound("21");
             completedRange = true;
             arenaText.locked = false;
-        }
-
-        if(isArena)
-        {
-
         }
     }
 }

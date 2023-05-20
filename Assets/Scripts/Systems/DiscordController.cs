@@ -2,18 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Discord;
+using UnityEngine.SceneManagement;
 
 public class DiscordController : MonoBehaviour
 {
     public long applicationID;
     [Space]
-    public string details = "Playing the greatest game ever made";
+    public string details = "Playing Life Of Bean";
     [Space]
     public string largeImage = "game_logo";
     public string largeText = "Life Of Bean";
 
     private static bool instanceExists;
     public Discord.Discord discord;
+
+    private long time;
+
+    Scene currentScene;
 
     void Awake() 
     {
@@ -33,6 +38,7 @@ public class DiscordController : MonoBehaviour
     {
         // Log in with the Application ID
         discord = new Discord.Discord(applicationID, (System.UInt64)Discord.CreateFlags.NoRequireDiscord);
+        time = System.DateTimeOffset.Now.ToUnixTimeMilliseconds();
         UpdateStatus();
     }
 
@@ -47,6 +53,23 @@ public class DiscordController : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        Scene scene = SceneManager.GetActiveScene();
+        currentScene = scene;
+        if(scene.name == "CutScene")  details = "Getting up to date on the lore";
+        if(scene.name == "Menu") details = "Preparing to fight some beans";
+        if(scene.name == "InitialScene")details = "In training";
+        if(scene.name == "ArenaIntro") details = "Admiring the arena";
+        if(scene.name == "Arena")
+        {
+            LevelManager levelManager;
+            levelManager = FindObjectOfType<LevelManager>();
+            if(levelManager != null)
+            {
+                details = "Fighting in the arena (Score " + levelManager.score + ")";
+            }
+        }
+        if(scene.name == "Credits") details = "Appreciating the devs work";
     }
 
     void LateUpdate() 
@@ -68,7 +91,12 @@ public class DiscordController : MonoBehaviour
                     LargeImage = largeImage,
                     LargeText = largeText
                 },
+                Timestamps =
+                {
+                    Start = time
+                }
             };
+
 
             activityManager.UpdateActivity(activity, (res) =>
             {

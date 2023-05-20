@@ -2004,7 +2004,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 444414672}
-  - component: {fileID: 444414671}
   - component: {fileID: 444414670}
   m_Layer: 0
   m_Name: CutsceneControlelr
@@ -2025,38 +2024,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 261e8fe734ca52b4181483c0b7c3e985, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioManager: {fileID: 444414671}
+  audioManager: {fileID: 0}
   levelLoader: {fileID: 1523540318}
---- !u!114 &444414671
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 444414669}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3646dd70660f863468114c5cd099530d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sounds:
-  - name: 33
-    clip: {fileID: 8300000, guid: fc532d6e780e0a7418a374b4a1475f2c, type: 3}
-    outputAudioMixerGroup: {fileID: -4387434332411123013, guid: 20e3b4152ed5ec74a955bd5eab71c050,
-      type: 2}
-    volume: 0.5
-    pitch: 1
-    spatialBlend: 0
-    dopplerLevel: 0
-    maxDistance: 500
-    rolloffMode: 1
-    loop: 0
-    source: {fileID: 0}
-  music: []
-  musicMixer: {fileID: -3020269314422819713, guid: 20e3b4152ed5ec74a955bd5eab71c050,
-    type: 2}
-  soundMixer: {fileID: -4387434332411123013, guid: 20e3b4152ed5ec74a955bd5eab71c050,
-    type: 2}
 --- !u!4 &444414672
 Transform:
   m_ObjectHideFlags: 0

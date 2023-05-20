@@ -10,6 +10,7 @@ public class CameraTransition : MonoBehaviour
 
     void Start()
     {
+        audioManager = FindObjectOfType<AudioManager>();
         StartCoroutine(AudioDelay());
         StartCoroutine(VideoDelay());
     }

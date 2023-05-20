@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
@@ -43,7 +44,10 @@ public class LevelManager : MonoBehaviour
         levelLoader = FindObjectOfType<LevelLoader>();
         audioManager = FindObjectOfType<AudioManager>();
 
-        audioManager.PlayOneShotSound("34");
+        if(SceneManager.GetActiveScene().buildIndex == 3)
+        {
+            audioManager.PlayOneShotSound("34");
+        }
     }
 
     // Update is called once per frame

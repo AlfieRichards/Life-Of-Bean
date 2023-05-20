@@ -13002,7 +13002,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   completedRange: 0
-  isRange: 0
+  isRange: 1
   isArena: 0
   gun: {fileID: 2916162096067114853}
   audioManager: {fileID: 489431271}
