@@ -716,20 +716,19 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 7700158196072434493}
   m_PrefabAsset: {fileID: 0}
---- !u!64 &7700158197985043289
-MeshCollider:
+--- !u!135 &7932725096727609188
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7358068998144587372}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -2865104911859505335, guid: d3336f2297af5f942a0d24dfdc13e409, type: 3}
+  serializedVersion: 2
+  m_Radius: 0.009799748
+  m_Center: {x: 0.058034763, y: 0.1927475, z: 0.035723567}
 --- !u!114 &7700158197985043288
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -743,13 +742,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isTargetSwitch: 1
-  _movingTarget: 0
+  _isDoor: 0
+  _movingTarget: 1
   _targetState: 0
   _targetSpeed: 5
   _target: {fileID: 7700158197122370470}
   _targetStart: {fileID: 7700158197102715319}
   _targetEnd: {fileID: 7700158196849152073}
   _interacted: 0
+  intendedScene: 0
+  _levelLoader: {fileID: 0}
+  _lockAble: 0
+  _fadeController: {fileID: 0}
 --- !u!4 &7878709347218926806 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d3336f2297af5f942a0d24dfdc13e409,

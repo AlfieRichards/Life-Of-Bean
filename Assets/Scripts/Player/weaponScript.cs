@@ -40,11 +40,11 @@ public class weaponScript : MonoBehaviour
     //ammo volumes
     [Header("Ammunition Options")]
     [ConditionalHide("_showAmmunitionOptions", true)]
-    [SerializeField] private int _magSize; //total mag size
+    [SerializeField] public int _magSize; //total mag size
     [ConditionalHide("_showAmmunitionOptions", true)]
-    [SerializeField] private int _ammoCapacity; //ammo in mag
+    [SerializeField] public int _ammoCapacity; //ammo in mag
     [ConditionalHide("_showAmmunitionOptions", true)]
-    [SerializeField] private int _spareAmmo; //spare ammo to reload with
+    [SerializeField] public int _spareAmmo; //spare ammo to reload with
 
     //weapon properties
     [Header("Weapon Options")]
@@ -87,6 +87,13 @@ public class weaponScript : MonoBehaviour
 
     [HideInInspector] public AudioController audioController;
 
+    //gameplay values
+    [HideInInspector] public int targetHits = 0;
+    [HideInInspector] public int enemiesKilled = 0;
+    [HideInInspector] public bool fired = false;
+    [HideInInspector] public bool reloaded = false;
+    [HideInInspector] public bool aimed = false;
+
     bool dryFired = false;
 
 
@@ -120,6 +127,7 @@ public class weaponScript : MonoBehaviour
                 //starts firing
                 FireWeapon();
                 _firing = true;
+                fired = true;
             }
 
             //if semi automatic
@@ -130,6 +138,7 @@ public class weaponScript : MonoBehaviour
                     //starts firing
                     FireWeapon();
                     _firing = true;
+                    fired = true;
                 }
             }
         }
@@ -153,6 +162,7 @@ public class weaponScript : MonoBehaviour
 
             //anim would play here
             AnimHandler("ads in");
+            aimed = true;
         }
 
         //if not right clicking
@@ -202,6 +212,7 @@ public class weaponScript : MonoBehaviour
                 //reloads the weapon after the reload time
                 _reloading = true;
                 _canReload = true;
+                reloaded = true;
 
 
                 //animations
@@ -361,11 +372,16 @@ public class weaponScript : MonoBehaviour
                     if(weaponHit.transform.tag == "Penetrable")
                     {
                         GameObject hole = Instantiate(_bulletHole, weaponHit.point, Quaternion.FromToRotation(transform.up, weaponHit.normal));
+                        targetHits += 1;
                         hole.transform.parent = weaponHit.transform;
                     }
                     if(weaponHit.transform.tag == "Enemy")
                     {
                         weaponHit.transform.gameObject.GetComponent<EnemyAi>().health -= _damage;
+                        if((weaponHit.transform.gameObject.GetComponent<EnemyAi>().health - _damage) <= 0)
+                        {
+                            enemiesKilled += 1;
+                        }
                         //Debug.Log(weaponHit.transform.name);
                     }
                     //everything but the targets
@@ -386,12 +402,17 @@ public class weaponScript : MonoBehaviour
                 if(cameraHit.transform.tag == "Penetrable")
                 {
                     GameObject hole = Instantiate(_bulletHole, cameraHit.point, Quaternion.FromToRotation(transform.up, cameraHit.normal));
+                    targetHits += 1;
                     hole.transform.parent = cameraHit.transform;
                 }
                 if(cameraHit.transform.tag == "Enemy")
                 {
                     EnemyAi enemyScript = cameraHit.transform.gameObject.GetComponent<EnemyAi>();
                     enemyScript.health -= _damage;
+                    if((cameraHit.transform.gameObject.GetComponent<EnemyAi>().health - _damage) <= 0)
+                    {
+                        enemiesKilled += 1;
+                    }
                 }
                 //Debug code
                 //Debug.Log("Did Hit");

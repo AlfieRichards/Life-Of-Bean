@@ -18,12 +18,14 @@ public class LevelManager : MonoBehaviour
     int neededScore;
     bool roundEnded = false;
     bool playing = true;
+    bool soundPlayed = false;
 
     public Animator transition;
     public float transitionTime = 1f;
     public GameObject cam;
 
     private LevelLoader levelLoader;
+    private AudioManager audioManager;
     private GameObject hurtCanvas;
 
     void Start()
@@ -39,6 +41,9 @@ public class LevelManager : MonoBehaviour
         neededScore = (score + (spawnerCount * spawnAmount));
         hurtCanvas = GameObject.Find("HurtCanvas");
         levelLoader = FindObjectOfType<LevelLoader>();
+        audioManager = FindObjectOfType<AudioManager>();
+
+        audioManager.PlayOneShotSound("34");
     }
 
     // Update is called once per frame
@@ -74,6 +79,12 @@ public class LevelManager : MonoBehaviour
 
             time = minutesString + " : " + secondsString;
 
+            if(score == 1 && !soundPlayed)
+            {
+                soundPlayed = true;
+                audioManager.PlayOneShotSound("35");
+            }
+
             CheckRoundEnd();
         }
     }
@@ -87,6 +98,7 @@ public class LevelManager : MonoBehaviour
     {
         if(playing)
         {
+            audioManager.PlayOneShotSound("36");
             StartCoroutine(FadeOut(player));
         }
     }
@@ -113,6 +125,7 @@ public class LevelManager : MonoBehaviour
         yield return new WaitForSeconds(transitionTime);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+        audioManager.PlayOneShotSound("37");
     }
 
     void CheckRoundEnd()

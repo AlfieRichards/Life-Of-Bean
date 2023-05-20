@@ -98,7 +98,8 @@ public class playerMovement : MonoBehaviour
     void CheckInput()
     {
         if(Input.GetKey(KeyCode.LeftShift)){_sprinting = true;}else{_sprinting = false;}
-        if(Input.GetKey(KeyCode.LeftControl)){_crouching = true;}else{_crouching = false;}
+        //if(Input.GetKey(KeyCode.LeftControl)){_crouching = true;}else{_crouching = false;}
+        if(!Input.GetKey(KeyCode.LeftControl)){_crouching = false;}
         if(Input.GetKey(KeyCode.Space)){Jump();}
     }
 
