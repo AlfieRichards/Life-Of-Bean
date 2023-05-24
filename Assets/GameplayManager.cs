@@ -19,11 +19,11 @@ public class GameplayManager : MonoBehaviour
     {
         if(isRange)
         {
-            audioManager.PlayOneShotSound("9");
+            audioManager.ForcePlaySound("9");
         }
         if(isArena)
         {
-            audioManager.PlayOneShotSound("33");
+            audioManager.ForcePlaySound("33");
         }
     }
 
@@ -37,17 +37,17 @@ public class GameplayManager : MonoBehaviour
             {
                 if(!gun.fired && gun.targetHits == 0)
                 {
-                    audioManager.PlayOneShotSound("12");
+                    audioManager.ForcePlaySound("12");
                     return;
                 }
                 if(gun._ammoCapacity == 0 && !gun.reloaded)
                 {
-                    audioManager.PlayOneShotSound("16");
+                    audioManager.ForcePlaySound("16");
                     return;
                 }
                 if(gun.fired && gun.targetHits == 0)
                 {
-                    audioManager.PlayOneShotSound("14");
+                    audioManager.ForcePlaySound("14");
                     return;
                 }
             }
@@ -55,7 +55,7 @@ public class GameplayManager : MonoBehaviour
 
         if(gun.targetHits >= 5 && !completedRange && isRange)
         {
-            audioManager.PlayOneShotSound("21");
+            audioManager.ForcePlaySound("21");
             completedRange = true;
             arenaText.locked = false;
         }

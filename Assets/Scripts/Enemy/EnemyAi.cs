@@ -168,7 +168,9 @@ public class EnemyAi : MonoBehaviour
 
     void Attacking()
     {
-        if(Random.Range(0, 3) == 2)
+        int num = Random.Range(0, 100);
+        Debug.Log(num);
+        if(num < 90)
         {
             if (GameObject.Find("Player") != null)
             {
@@ -187,6 +189,16 @@ public class EnemyAi : MonoBehaviour
                     }
                 }
                 //Debug.Log(info.collider.gameObject.name);
+                _state = 1;
+            }
+        }
+        else
+        {
+            if(canAttack)
+            {
+                SoundManager("shoot");
+                canAttack = false;
+                Invoke("ResetAttack", shotDelay);
                 _state = 1;
             }
         }

@@ -220,6 +220,25 @@ public class ProbeIntensity : EditorWindow
 
         GUILayout.EndHorizontal();
         GUILayout.EndArea();
+        GUILayout.BeginArea(new Rect(10, 100, 260, 110));
+        GUILayout.Space(10);
+
+        GUILayout.BeginHorizontal();
+        GUILayout.Label(" Scale value alters how much the buttons");
+        GUILayout.EndHorizontal();
+        GUILayout.Space(0);
+        GUILayout.BeginHorizontal();
+        GUILayout.Label(" will change the intensity by");
+        GUILayout.EndHorizontal();
+        GUILayout.Space(10);
+        GUILayout.BeginHorizontal();
+        GUILayout.Label(" Maintained by alfiedev.co.uk");
+        GUILayout.EndHorizontal();
+        GUILayout.BeginHorizontal();
+        GUILayout.Label(" Original by Kemalakay");
+
+        GUILayout.EndHorizontal();
+        GUILayout.EndArea();
 
     }
 
@@ -264,7 +283,7 @@ public class ProbeIntensity : EditorWindow
         {
             foreach (Light l in lights)
             {
-                if (l.isBaked == true)
+                if (l.bakingOutput.isBaked == true)
                 {
                     noBaked = false;
                     Debug.LogWarning("Realtime light information is not stored in light probes!");
@@ -279,7 +298,7 @@ public class ProbeIntensity : EditorWindow
         {
             foreach (Light l in lights)
             {
-                if (l.isBaked == false)
+                if (l.bakingOutput.isBaked == false)
                 {
                     Debug.LogWarning("No lights in the scene");
                 }

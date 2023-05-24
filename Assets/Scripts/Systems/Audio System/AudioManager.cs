@@ -121,6 +121,27 @@ public class AudioManager : MonoBehaviour
         s.source.Play();
     }
 
+    public void ForcePlaySound(string name)
+    {
+        foreach (Sound so in sounds)
+        {
+            if(so != null)
+            {
+                so.source.Stop();
+            }
+        }
+
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+        //custom error message when cant find clip name
+        if (s == null)
+        {
+            Debug.LogWarning("Sound: " + name + " not found!");
+            return;
+        }
+        Debug.Log("Playing sound");
+        s.source.Play();
+    }
+
     public void PlayMusic(string name)
     {
         Sound m = Array.Find(music, sound => sound.name == name);

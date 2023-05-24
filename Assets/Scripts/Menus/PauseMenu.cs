@@ -9,6 +9,12 @@ public class PauseMenu : MonoBehaviour
 
     public GameObject pauseMenuUI;
     public GameObject optionsMenuUI;
+    public LevelLoader levelLoader;
+
+    void Start()
+    {   
+        levelLoader = FindObjectOfType<LevelLoader>();
+    }
 
     void Update()
     {
@@ -48,16 +54,12 @@ public class PauseMenu : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
     }
 
-    //public void LoadMenu()
-
-    //{
-    //    Time.timeScale = 1f;
-    //    SceneManager.LoadScene("Main Menu");
-    //}
-
     public void QuitGame()
     {
-        Debug.Log("Quitting game...");
-        Application.Quit();
+        levelLoader.StartCoroutine(levelLoader.LoadLevel(1));
+        Time.timeScale = 1f;
+        GameIsPaused = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 }

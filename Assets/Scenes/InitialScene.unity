@@ -3371,7 +3371,7 @@ PrefabInstance:
     - target: {fileID: 6378361265212908933, guid: 377a171f3d9f55e4d90f951a4e43df6e,
         type: 3}
       propertyPath: sounds.Array.data[0].volume
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6378361265212908933, guid: 377a171f3d9f55e4d90f951a4e43df6e,
         type: 3}
@@ -3426,7 +3426,7 @@ PrefabInstance:
     - target: {fileID: 6378361265212908933, guid: 377a171f3d9f55e4d90f951a4e43df6e,
         type: 3}
       propertyPath: sounds.Array.data[1].volume
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6378361265212908933, guid: 377a171f3d9f55e4d90f951a4e43df6e,
         type: 3}
@@ -3481,7 +3481,7 @@ PrefabInstance:
     - target: {fileID: 6378361265212908933, guid: 377a171f3d9f55e4d90f951a4e43df6e,
         type: 3}
       propertyPath: sounds.Array.data[2].volume
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6378361265212908933, guid: 377a171f3d9f55e4d90f951a4e43df6e,
         type: 3}
@@ -3521,132 +3521,132 @@ PrefabInstance:
     - target: {fileID: 6378361265212908933, guid: 377a171f3d9f55e4d90f951a4e43df6e,
         type: 3}
       propertyPath: sounds.Array.data[3].volume
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6378361265212908933, guid: 377a171f3d9f55e4d90f951a4e43df6e,
         type: 3}
       propertyPath: sounds.Array.data[4].volume
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6378361265212908933, guid: 377a171f3d9f55e4d90f951a4e43df6e,
         type: 3}
       propertyPath: sounds.Array.data[5].volume
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6378361265212908933, guid: 377a171f3d9f55e4d90f951a4e43df6e,
         type: 3}
       propertyPath: sounds.Array.data[6].volume
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6378361265212908933, guid: 377a171f3d9f55e4d90f951a4e43df6e,
         type: 3}
       propertyPath: sounds.Array.data[7].volume
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6378361265212908933, guid: 377a171f3d9f55e4d90f951a4e43df6e,
         type: 3}
       propertyPath: sounds.Array.data[8].volume
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6378361265212908933, guid: 377a171f3d9f55e4d90f951a4e43df6e,
         type: 3}
       propertyPath: sounds.Array.data[9].volume
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6378361265212908933, guid: 377a171f3d9f55e4d90f951a4e43df6e,
         type: 3}
       propertyPath: sounds.Array.data[10].volume
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6378361265212908933, guid: 377a171f3d9f55e4d90f951a4e43df6e,
         type: 3}
       propertyPath: sounds.Array.data[11].volume
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6378361265212908933, guid: 377a171f3d9f55e4d90f951a4e43df6e,
         type: 3}
       propertyPath: sounds.Array.data[12].volume
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6378361265212908933, guid: 377a171f3d9f55e4d90f951a4e43df6e,
         type: 3}
       propertyPath: sounds.Array.data[13].volume
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6378361265212908933, guid: 377a171f3d9f55e4d90f951a4e43df6e,
         type: 3}
       propertyPath: sounds.Array.data[14].volume
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6378361265212908933, guid: 377a171f3d9f55e4d90f951a4e43df6e,
         type: 3}
       propertyPath: sounds.Array.data[15].volume
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6378361265212908933, guid: 377a171f3d9f55e4d90f951a4e43df6e,
         type: 3}
       propertyPath: sounds.Array.data[16].volume
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6378361265212908933, guid: 377a171f3d9f55e4d90f951a4e43df6e,
         type: 3}
       propertyPath: sounds.Array.data[17].volume
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6378361265212908933, guid: 377a171f3d9f55e4d90f951a4e43df6e,
         type: 3}
       propertyPath: sounds.Array.data[18].volume
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6378361265212908933, guid: 377a171f3d9f55e4d90f951a4e43df6e,
         type: 3}
       propertyPath: sounds.Array.data[19].volume
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6378361265212908933, guid: 377a171f3d9f55e4d90f951a4e43df6e,
         type: 3}
       propertyPath: sounds.Array.data[20].volume
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6378361265212908933, guid: 377a171f3d9f55e4d90f951a4e43df6e,
         type: 3}
       propertyPath: sounds.Array.data[21].volume
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6378361265212908933, guid: 377a171f3d9f55e4d90f951a4e43df6e,
         type: 3}
       propertyPath: sounds.Array.data[22].volume
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6378361265212908933, guid: 377a171f3d9f55e4d90f951a4e43df6e,
         type: 3}
       propertyPath: sounds.Array.data[23].volume
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6378361265212908933, guid: 377a171f3d9f55e4d90f951a4e43df6e,
         type: 3}
       propertyPath: sounds.Array.data[24].volume
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6378361265212908933, guid: 377a171f3d9f55e4d90f951a4e43df6e,
         type: 3}
       propertyPath: sounds.Array.data[25].volume
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6378361265212908933, guid: 377a171f3d9f55e4d90f951a4e43df6e,
         type: 3}
       propertyPath: sounds.Array.data[26].volume
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6378361265212908933, guid: 377a171f3d9f55e4d90f951a4e43df6e,
         type: 3}
       propertyPath: sounds.Array.data[27].volume
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6378361265212908933, guid: 377a171f3d9f55e4d90f951a4e43df6e,
         type: 3}
       propertyPath: sounds.Array.data[28].volume
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6378361265212908933, guid: 377a171f3d9f55e4d90f951a4e43df6e,
         type: 3}
@@ -22751,6 +22751,61 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4052702017854967490, guid: 33e6271d472d23b4791bae4a2002bdbf,
+        type: 3}
+      propertyPath: m_text
+      value: Shoot the target 5 times to unlock!
+      objectReference: {fileID: 0}
+    - target: {fileID: 4052702017854967490, guid: 33e6271d472d23b4791bae4a2002bdbf,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 18.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 4052702017854967490, guid: 33e6271d472d23b4791bae4a2002bdbf,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 18.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 4052702017854967490, guid: 33e6271d472d23b4791bae4a2002bdbf,
+        type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4052702017854967490, guid: 33e6271d472d23b4791bae4a2002bdbf,
+        type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 4608331028976875372, guid: 33e6271d472d23b4791bae4a2002bdbf,
+        type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 4608331028976875372, guid: 33e6271d472d23b4791bae4a2002bdbf,
+        type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4608331028976875374, guid: 33e6271d472d23b4791bae4a2002bdbf,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4608331029124816773, guid: 33e6271d472d23b4791bae4a2002bdbf,
+        type: 3}
+      propertyPath: m_Alpha
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4608331029124816776, guid: 33e6271d472d23b4791bae4a2002bdbf,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 533.7874
+      objectReference: {fileID: 0}
+    - target: {fileID: 4608331029124816776, guid: 33e6271d472d23b4791bae4a2002bdbf,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.5345
+      objectReference: {fileID: 0}
     - target: {fileID: 4608331029689278570, guid: 33e6271d472d23b4791bae4a2002bdbf,
         type: 3}
       propertyPath: locked
@@ -22820,6 +22875,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: HoverableDoor
+      objectReference: {fileID: 0}
+    - target: {fileID: 4608331029754609732, guid: 33e6271d472d23b4791bae4a2002bdbf,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4608331029754609732, guid: 33e6271d472d23b4791bae4a2002bdbf,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -0.050049
+      objectReference: {fileID: 0}
+    - target: {fileID: 4608331029754609732, guid: 33e6271d472d23b4791bae4a2002bdbf,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.024993896
+      objectReference: {fileID: 0}
+    - target: {fileID: 7144214378998508374, guid: 33e6271d472d23b4791bae4a2002bdbf,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []

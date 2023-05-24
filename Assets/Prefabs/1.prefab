@@ -4489,7 +4489,7 @@ MonoBehaviour:
   _patrolRange: 30
   health: 100
   damage: 10
-  shotDelay: 0.3
+  shotDelay: 0.2
   enemy:
     serializedVersion: 2
     m_Bits: 521
