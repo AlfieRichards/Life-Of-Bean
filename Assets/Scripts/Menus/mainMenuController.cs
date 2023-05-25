@@ -23,7 +23,7 @@ public class mainMenuController : MonoBehaviour
     public GameObject audioSettings;
     public LevelLoader levelLoader;
 
-    public AudioController audioManager;
+    public AudioManager audioManager;
 
     int index = 0;
 
@@ -49,6 +49,7 @@ public class mainMenuController : MonoBehaviour
     void Start()
     {
         LoadPrefs();
+        audioManager = FindObjectOfType<AudioManager>();
         audioManager.PlaySound("startup");
         audioManager.PlaySound("pcLoop");
 

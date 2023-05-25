@@ -88,7 +88,7 @@ public class weaponScript : MonoBehaviour
     [HideInInspector] public AudioController audioController;
 
     //gameplay values
-    [HideInInspector] public int targetHits = 0;
+    public int targetHits = 0;
     [HideInInspector] public int enemiesKilled = 0;
     [HideInInspector] public bool fired = false;
     [HideInInspector] public bool reloaded = false;
