@@ -21,6 +21,7 @@ public class SettingsMenu : MonoBehaviour {
     void Start ()
     {
         //Loads all player prefs except resolution
+        player = GameObject.Find("Player").GetComponent<playerMovement>();
         LoadPrefs();
     }
 
